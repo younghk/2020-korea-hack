@@ -2,12 +2,15 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+const conf = require('./config')
 
 //CORS
 app.use(function(req, res, next) {
@@ -19,16 +22,21 @@ app.use(function(req, res, next) {
 const mysql = require('mysql')
 
 const connection = mysql.createConnection({
-  host:'localhost',
-  user:'koreahack',
-  password:'koreahack1234',
-  dataase:'simple-tutorial'
+  host: conf.host,
+  user: conf.user,
+  password: conf.password,
+  database: conf.database,
+
+  multipleStatements: true
 })
 
 connection.connect(function(err){
   (err)? console.log(err+'++++++++++//////////'):
   console.log('connection**********')
 })
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 
 require('./routes/html-route')(app, connection)
 

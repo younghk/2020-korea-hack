@@ -17,7 +17,7 @@ connection.connect(function(err){
     (err)? console.log(err): console.log(connection)
 })
 
-require('./routs/html-routs')(app)
+require('./routes/html-route')(app)
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}`)

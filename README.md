@@ -10,4 +10,12 @@ git merge develop # merge develop branch into master(do this when you are on the
 
 ## Prerequisite
 
-## Features
+MySQL 8  
+
+```
+npm install # package
+```
+
+
+
+## Features  

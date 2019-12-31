@@ -7,14 +7,15 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      users: []
+      users: [],
     }
   }
 
   getUsers = _ => {
     console.log('try getUsers')
-    const apiURL = 'http://localhost:3001/'
-    axios.get(apiURL+'users').then((data) => {
+    const apiURL = 'http://localhost:3001/' + 'users/?userId=1'
+    console.log(apiURL)
+    axios.get(apiURL).then((data) => {
       console.log(data.data.users);
       this.setState({
         users: data.data.users,
