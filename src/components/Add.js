@@ -2,6 +2,49 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Dateselecter2 from "./Dateselecter2";
 
+function Add() {
+  const [open, setOpen] = useState(false);
+
+  const onToggle = () => setOpen(!open);
+
+  return (
+    <>
+      <BoxDiv>
+        <TitleDiv>
+          <Image src={require("../img/ic_user.png")} alt="img" />
+          <InputText>중요한 일정*</InputText>
+        </TitleDiv>
+        <DiaryDiv>
+          <Textarea2 placeholder="결혼기념일"></Textarea2>
+          <Dateselecter2 />
+        </DiaryDiv>
+        <AddDiv>
+          <NewDiv>
+            {open && (
+              <InsertDiary>
+                <DiaryDiv>
+                  <Textarea2 placeholder="결혼기념일"></Textarea2>
+                  <Dateselecter2 />
+                </DiaryDiv>
+              </InsertDiary>
+            )}
+
+            {/* <AddButton>
+              <Image src={require("../img/ic_plus_date@2x.png")} alt="img" />
+            </AddButton> */}
+          </NewDiv>
+        </AddDiv>
+        <DotImg
+          onClick={onToggle}
+          open={open}
+          src={require("../img/ic_plus_date@2x.png")}
+          alt="img"
+        ></DotImg>
+      </BoxDiv>
+    </>
+  );
+}
+
 const DotImg = styled.img`
   display: block;
   align-items: center;
@@ -82,48 +125,5 @@ const InsertDiary = styled.div`
 const NewDiv = styled.div`
   display: block;
 `;
-
-function Add() {
-  const [open, setOpen] = useState(false);
-
-  const onToggle = () => setOpen(!open);
-
-  return (
-    <>
-      <BoxDiv>
-        <TitleDiv>
-          <Image src={require("../img/ic_user.png")} alt="img" />
-          <InputText>중요한 일정*</InputText>
-        </TitleDiv>
-        <DiaryDiv>
-          <Textarea2 placeholder="결혼기념일"></Textarea2>
-          <Dateselecter2 />
-        </DiaryDiv>
-        <AddDiv>
-          <NewDiv>
-            {open && (
-              <InsertDiary>
-                <DiaryDiv>
-                  <Textarea2 placeholder="결혼기념일"></Textarea2>
-                  <Dateselecter2 />
-                </DiaryDiv>
-              </InsertDiary>
-            )}
-
-            {/* <AddButton>
-              <Image src={require("../img/ic_plus_date@2x.png")} alt="img" />
-            </AddButton> */}
-          </NewDiv>
-        </AddDiv>
-        <DotImg
-          onClick={onToggle}
-          open={open}
-          src={require("../img/ic_plus_date@2x.png")}
-          alt="img"
-        ></DotImg>
-      </BoxDiv>
-    </>
-  );
-}
 
 export default Add;

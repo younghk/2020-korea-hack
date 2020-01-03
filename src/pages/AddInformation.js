@@ -3,12 +3,11 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import TabSettings from "../components/TabSettings";
 
-
-const Settings = () => {
+const AddInformation = () => {
   return (
     <ContainerDiv>
       <TopDiv>
-        <text className="toptext">설정</text>
+        <text className="toptext">정보 추가/수정</text>
       </TopDiv>
       <LinkDiv to="/input">
         <ContentDiv>
@@ -46,7 +45,6 @@ const Settings = () => {
     </ContainerDiv>
   );
 };
-
 
 const ContainerDiv = styled.div`
   flex: 1;
@@ -95,4 +93,4 @@ const CttextDiv = styled.div`
   text-align: left;
 `;
 
-export default Settings;
+export default AddInformation;

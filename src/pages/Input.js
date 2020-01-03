@@ -1,10 +1,225 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import Dateselecter from "../components/Dateselecter";
 // import Dateselecter2 from "../components/Dateselecter2";
 import Add from "../components/Add";
+
+const Input = props => {
+  const [pageNum, setPageNum] = useState(1);
+  // const [users] = useState(' ')
+
+  useEffect(() => {
+    setPageNum(Number(props.match.params.id));
+    // const apiURL = 'http://localhost:3001/users/?userId=1'
+    // axios.get(apiURL).then((data) => {
+    //   console.log(data.data.users);
+    //   this.setState({
+    //     users: data.data.users,
+    //   });
+    // }).catch(error => console.log(error));
+  }, [pageNum, props.match.params.id]);
+  const Input1 = (
+    <ContainerDiv>
+      {/* { users } */}
+      <TotalDiv>
+        <PhotoButton>
+          <TotalImg
+            src={require("../img/img_gallery.png")}
+            alt="img"
+          ></TotalImg>
+        </PhotoButton>
+      </TotalDiv>
+
+      <DotDiv>
+        <DotImg src={require("../img/ecllipses.png")} alt="img"></DotImg>
+      </DotDiv>
+    </ContainerDiv>
+  );
+  const Input2 = (
+    <ContainerDiv>
+      <InputDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <InputText>친구의 이름을 입력하세요.</InputText>
+          </TitleDiv>
+          <Textarea placeholder="이름을 입력하세요"></Textarea>
+        </BoxDiv>
+      </InputDiv>
+      <DotDiv>
+        <DotImg src={require("../img/ecllipses.png")} alt="img"></DotImg>
+      </DotDiv>
+    </ContainerDiv>
+  );
+
+  const Input3 = (
+    <ContainerDiv>
+      <InputDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>성별</InputText>
+          </TitleDiv>
+          <Select>
+            <Option value="female" selected>
+              여
+            </Option>
+            <Option value="male">남</Option>
+          </Select>
+        </BoxDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>관계</InputText>
+          </TitleDiv>
+          <Select>
+            <Option value="friend" selected>
+              친구
+            </Option>
+            <Option value="family">가족</Option>
+            <Option value="lover">애인</Option>
+          </Select>
+        </BoxDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>생일</InputText>
+          </TitleDiv>
+          <Dateselecter width="255px" height="48px" />
+        </BoxDiv>
+      </InputDiv>
+      <DotDiv>
+        <DotImg src={require("../img/eclipses.png")} alt="img"></DotImg>
+      </DotDiv>
+    </ContainerDiv>
+  );
+
+  const Input4 = (
+    <ContainerDiv>
+      <ComentText>*필수 응답 설문입니다</ComentText>
+      <InputDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>직업*</InputText>
+          </TitleDiv>
+          <Textarea placeholder="대학생"></Textarea>
+        </BoxDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>거주 지역*</InputText>
+          </TitleDiv>
+          <Textarea placeholder="서울시 성북구"></Textarea>
+        </BoxDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>취미*</InputText>
+          </TitleDiv>
+          <Textarea placeholder="러닝, 아웃도어, 독서, 영화"></Textarea>
+        </BoxDiv>
+      </InputDiv>
+      <DotDiv>
+        <DotImg src={require("../img/ecllipses3.png")} alt="img"></DotImg>
+      </DotDiv>
+    </ContainerDiv>
+  );
+
+  const Input5 = (
+    <ContainerDiv>
+      <ComentText>
+        *선택 응답 설문입니다. 더 나은 친구 관리 서비스를 위해 응답을
+        권장합니다.
+      </ComentText>
+      <InputDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>출신*</InputText>
+          </TitleDiv>
+          <Textarea placeholder="경기도 고양시"></Textarea>
+        </BoxDiv>
+        <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>서로 알고 지낸 기간*</InputText>
+          </TitleDiv>
+          <Textarea placeholder="10년"></Textarea>
+        </BoxDiv>
+        <Add />
+        {/* <BoxDiv>
+          <TitleDiv>
+            <Image src={require("../img/ic_user.png")} alt="img" />
+            <InputText>중요한 일정*</InputText>
+          </TitleDiv>
+          <DiaryDiv>
+            <Textarea2 placeholder="결혼기념일"></Textarea2>
+            <Dateselecter2 />
+          </DiaryDiv>
+          <AddDiv>
+            <Add />
+            
+
+            <AddButton>
+              <Image src={require("../img/ic_plus_date@2x.png")} alt="img" />
+            </AddButton>
+
+
+          </AddDiv>
+        </BoxDiv> */}
+      </InputDiv>
+      <DotDiv>
+        <DotImg src={require("../img/그룹 1576.png")} alt="img"></DotImg>
+      </DotDiv>
+    </ContainerDiv>
+  );
+
+  let toggleInput = null;
+  if (pageNum === 1) {
+    toggleInput = Input1;
+  } else if (pageNum === 2) {
+    toggleInput = Input2;
+  } else if (pageNum === 3) {
+    toggleInput = Input3;
+  } else if (pageNum === 4) {
+    toggleInput = Input4;
+  } else if (pageNum === 5) {
+    toggleInput = Input5;
+  }
+
+  const buttonHandler = key => {
+    if (!key) {
+      props.history.push(`/input/${pageNum - 1}`);
+      setPageNum(pageNum - 1);
+    } else {
+      props.history.push(`/input/${pageNum + 1}`);
+      setPageNum(pageNum + 1);
+    }
+  };
+
+  return (
+    <AllDiv>
+      <TopDiv>{toggleInput}</TopDiv>
+
+      <BottomDiv>
+        <BackButton
+          onClick={() => buttonHandler(false)}
+          disabled={pageNum <= 1}
+        >
+          <img src={require("../img/btn-gray.png")} alt="img"></img>
+          {/* <BackText>뒤로</BackText> */}
+        </BackButton>
+        <GoButton onClick={() => buttonHandler(true)}>
+          <img src={require("../img/btn-blue.png")} alt="img"></img>
+          {/* <GoText>완료</GoText> */}
+        </GoButton>
+      </BottomDiv>
+    </AllDiv>
+  );
+};
 
 const AllDiv = styled.div`
   width: 100%;
@@ -232,210 +447,5 @@ const GoText = styled.text`
   text-align: center;
   color: #ffffff;
 `;
-
-const Input = props => {
-  const [pageNum, setPageNum] = useState(1);
-
-  useEffect(() => {
-    setPageNum(Number(props.match.params.id));
-  }, [pageNum, props.match.params.id]);
-  const Input1 = (
-    <ContainerDiv>
-      <TotalDiv>
-        <PhotoButton>
-          <TotalImg
-            src={require("../img/img_gallery.png")}
-            alt="img"
-          ></TotalImg>
-        </PhotoButton>
-      </TotalDiv>
-
-      <DotDiv>
-        <DotImg src={require("../img/ecllipses.png")} alt="img"></DotImg>
-      </DotDiv>
-    </ContainerDiv>
-  );
-  const Input2 = (
-    <ContainerDiv>
-      <InputDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <InputText>친구의 이름을 입력하세요.</InputText>
-          </TitleDiv>
-          <Textarea placeholder="이름을 입력하세요"></Textarea>
-        </BoxDiv>
-      </InputDiv>
-      <DotDiv>
-        <DotImg src={require("../img/ecllipses.png")} alt="img"></DotImg>
-      </DotDiv>
-    </ContainerDiv>
-  );
-
-  const Input3 = (
-    <ContainerDiv>
-      <InputDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>성별</InputText>
-          </TitleDiv>
-          <Select>
-            <Option value="female" selected>
-              여
-            </Option>
-            <Option value="male">남</Option>
-          </Select>
-        </BoxDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>관계</InputText>
-          </TitleDiv>
-          <Select>
-            <Option value="friend" selected>
-              친구
-            </Option>
-            <Option value="family">가족</Option>
-            <Option value="lover">애인</Option>
-          </Select>
-        </BoxDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>생일</InputText>
-          </TitleDiv>
-          <Dateselecter width="255px" height="48px" />
-        </BoxDiv>
-      </InputDiv>
-      <DotDiv>
-        <DotImg src={require("../img/eclipses.png")} alt="img"></DotImg>
-      </DotDiv>
-    </ContainerDiv>
-  );
-
-  const Input4 = (
-    <ContainerDiv>
-      <ComentText>*필수 응답 설문입니다</ComentText>
-      <InputDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>직업*</InputText>
-          </TitleDiv>
-          <Textarea placeholder="대학생"></Textarea>
-        </BoxDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>거주 지역*</InputText>
-          </TitleDiv>
-          <Textarea placeholder="서울시 성북구"></Textarea>
-        </BoxDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>취미*</InputText>
-          </TitleDiv>
-          <Textarea placeholder="러닝, 아웃도어, 독서, 영화"></Textarea>
-        </BoxDiv>
-      </InputDiv>
-      <DotDiv>
-        <DotImg src={require("../img/ecllipses3.png")} alt="img"></DotImg>
-      </DotDiv>
-    </ContainerDiv>
-  );
-
-  const Input5 = (
-    <ContainerDiv>
-      <ComentText>
-        *선택 응답 설문입니다. 더 나은 친구 관리 서비스를 위해 응답을
-        권장합니다.
-      </ComentText>
-      <InputDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>출신*</InputText>
-          </TitleDiv>
-          <Textarea placeholder="경기도 고양시"></Textarea>
-        </BoxDiv>
-        <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>서로 알고 지낸 기간*</InputText>
-          </TitleDiv>
-          <Textarea placeholder="10년"></Textarea>
-        </BoxDiv>
-        <Add />
-        {/* <BoxDiv>
-          <TitleDiv>
-            <Image src={require("../img/ic_user.png")} alt="img" />
-            <InputText>중요한 일정*</InputText>
-          </TitleDiv>
-          <DiaryDiv>
-            <Textarea2 placeholder="결혼기념일"></Textarea2>
-            <Dateselecter2 />
-          </DiaryDiv>
-          <AddDiv>
-            <Add />
-            
-
-            <AddButton>
-              <Image src={require("../img/ic_plus_date@2x.png")} alt="img" />
-            </AddButton>
-
-
-          </AddDiv>
-        </BoxDiv> */}
-      </InputDiv>
-      <DotDiv>
-        <DotImg src={require("../img/그룹 1576.png")} alt="img"></DotImg>
-      </DotDiv>
-    </ContainerDiv>
-  );
-
-  let toggleInput = null;
-  if (pageNum === 1) {
-    toggleInput = Input1;
-  } else if (pageNum === 2) {
-    toggleInput = Input2;
-  } else if (pageNum === 3) {
-    toggleInput = Input3;
-  } else if (pageNum === 4) {
-    toggleInput = Input4;
-  } else if (pageNum === 5) {
-    toggleInput = Input5;
-  }
-
-  const buttonHandler = key => {
-    if (!key) {
-      props.history.push(`/input/${pageNum - 1}`);
-      setPageNum(pageNum - 1);
-    } else {
-      props.history.push(`/input/${pageNum + 1}`);
-      setPageNum(pageNum + 1);
-    }
-  };
-
-  return (
-    <AllDiv>
-      <TopDiv>{toggleInput}</TopDiv>
-
-      <BottomDiv>
-        <BackButton
-          onClick={() => buttonHandler(false)}
-          disabled={pageNum <= 1}
-        >
-          <img src={require("../img/btn-gray.png")} alt="img"></img>
-          {/* <BackText>뒤로</BackText> */}
-        </BackButton>
-        <GoButton onClick={() => buttonHandler(true)}>
-          <img src={require("../img/btn-blue.png")} alt="img"></img>
-          {/* <GoText>완료</GoText> */}
-        </GoButton>
-      </BottomDiv>
-    </AllDiv>
-  );
-};
 
 export default Input;

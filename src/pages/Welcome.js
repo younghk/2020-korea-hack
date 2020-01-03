@@ -27,7 +27,6 @@ const BottomDiv = styled.div`
 const MainDiv = styled.div`
   width: 178.8px;
   height: 32.5px;
-  display: flex;
   jutify-content: center;
   align-items: center;
 `;
