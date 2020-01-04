@@ -5,15 +5,18 @@ import FriendStory from "../components/FriendStory";
 import ToDo from "../components/ToDo";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import TabChat from "../components/TabChat";
 
 const Message = () => {
   return (
     <>
       <HomeDiv>
-        <Title name="Hot Five" />
+        {/* <Title name="Hot Five" />
         <AllDiv>
           <ToDo />
-        </AllDiv>
+        </AllDiv> */}
+        <img src={require("../img/채팅1.png")} />
+        <TabChat />
       </HomeDiv>
     </>
   );
@@ -32,7 +35,7 @@ const LinkDiv = styled(Link)`
 const HomeDiv = styled.div`
   display: flex;
   width: 100%;
-  height: 850px;
+  height: 715px;
   // background-color: red;
   margin: 0;
   padding: 0;

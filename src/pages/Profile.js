@@ -56,18 +56,26 @@ const Profile = () => {
           </BoxDiv>
           <BoxDiv>
             <TitleDiv>
-              <TitleText>생일</TitleText>
+              <TitleText>취미</TitleText>
             </TitleDiv>
             <ContentDiv>
-              <ContentText>#1995.11.17</ContentText>
+              <ContentText>#러닝</ContentText>
             </ContentDiv>
           </BoxDiv>
           <BoxDiv>
             <TitleDiv>
-              <TitleText>생일</TitleText>
+              <TitleText>서로 알고 지낸 지</TitleText>
             </TitleDiv>
             <ContentDiv>
-              <ContentText>#1995.11.17</ContentText>
+              <ContentText>#2년째</ContentText>
+            </ContentDiv>
+          </BoxDiv>
+          <BoxDiv>
+            <TitleDiv>
+              <TitleText>중요한 일정</TitleText>
+            </TitleDiv>
+            <ContentDiv>
+              <ContentText>#결혼기념일_3월19일</ContentText>
             </ContentDiv>
           </BoxDiv>
         </BottomDiv>

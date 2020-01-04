@@ -83,6 +83,12 @@ const routes = [
     component: ProfileActive,
     name: "프로필 통계",
     exact: false
+  },
+  {
+    path: "/message",
+    component: Message,
+    name: "메시지 입력",
+    exact: false
   }
 ];
 

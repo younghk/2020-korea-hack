@@ -15,7 +15,7 @@ const TabSettings = () => {
           <TabImg src={require("../img/ic_friends.png")} alt="img"></TabImg>
         </TabDiv>
       </Link>
-      <Link to="/input/2">
+      <Link to="/message">
         <TabDiv>
           <TabImg src={require("../img/ic_chat.png")} alt="img"></TabImg>
         </TabDiv>

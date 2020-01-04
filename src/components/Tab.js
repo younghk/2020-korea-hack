@@ -8,12 +8,12 @@ const Tab = () => {
       <TabOnDiv>
         <TabText>정보</TabOnText>
       </TabOnDiv>
-      <TabDiv>
+      <TabOffDiv>
         <TabText>To Do List</TabText>
-      </TabDiv>
-      <TabDiv>
+      </TabOffDiv>
+      <TabOffDiv>
         <TabText>활동 측정</TabText>
-      </TabDiv>
+      </TabOffDiv>
     </AllDiv>
   );
 };
