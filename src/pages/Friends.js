@@ -65,7 +65,7 @@ const Friends = () => {
                     <br />
                   </CenterDiv>
                   <RightDiv>
-                    <Link to="/Friend">
+                    <Link to={'/profile/' + friend.id}>
                       <Button>
                         <img src={require("../img/ic_right.png")} />
                       </Button>
