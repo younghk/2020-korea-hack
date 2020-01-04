@@ -6,9 +6,7 @@ import TabSettings from "../components/TabSettings";
 const Settings = () => {
   return (
     <ContainerDiv>
-      <TopDiv>
-        <text className="toptext">설정</text>
-      </TopDiv>
+      <TopDiv>설정</TopDiv>
       <LinkDiv to="/input">
         <ContentDiv>
           <CtimgDiv>
@@ -54,6 +52,7 @@ const TopDiv = styled.div`
   width: 100%;
   height: 100px;
   background-color: #ffffff;
+  font-family: Noto Sans KR;
   display: flex;
   align-items: center;
   justify-content: center;
