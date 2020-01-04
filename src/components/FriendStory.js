@@ -6,6 +6,7 @@ import axios from 'axios';
 const FriendStory = ({ name, img }) => {
 
   const [users, setUsers] = useState([])
+  const [profile, setProfile] = useState()
 
   useEffect(() => {
     const apiURL = 'http://localhost:3001/api/home'
@@ -17,11 +18,12 @@ const FriendStory = ({ name, img }) => {
     }
 
     fetchData();
+
+
   }, []);
 
   return (
     <>
-      
       <StorysDiv>
         {users.map(user => {
           return([
