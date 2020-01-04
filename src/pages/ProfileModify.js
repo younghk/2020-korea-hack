@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import TabSettings from "../components/TabSettings";
 
-const AddInformation = () => {
+const ProfileModify = () => {
   return (
     <ContainerDiv>
       <TopDiv>
@@ -93,4 +93,4 @@ const CttextDiv = styled.div`
   text-align: left;
 `;
 
-export default AddInformation;
+export default ProfileModify;

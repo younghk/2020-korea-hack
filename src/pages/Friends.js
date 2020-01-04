@@ -29,11 +29,11 @@ const Friends = () => {
                 <br />
               </CenterDiv>
               <RightDiv>
-                <Link to="/Friend">
+                <LinkDiv to="/profile">
                   <Button>
                     <img src={require("../img/ic_right.png")} />
                   </Button>
-                </Link>
+                </LinkDiv>
               </RightDiv>
             </FriendDiv>
             <FriendDiv>
@@ -49,23 +49,23 @@ const Friends = () => {
                 <br />
               </CenterDiv>
               <RightDiv>
-                <Link to="/Friend">
+                <LinkDiv to="/friend">
                   <Button>
                     <img src={require("../img/ic_right.png")} />
                   </Button>
-                </Link>
+                </LinkDiv>
               </RightDiv>
             </FriendDiv>
 
             <FriendDiv>
               <NewDiv>
-                <Link to="/Input/1">
+                <LinkDiv to="/input/1">
                   <ButtonDIv>
                     <AddButton>
                       <PhotoImg src={require("../img/img_addfriend.png")} />
                     </AddButton>
                   </ButtonDIv>
-                </Link>
+                </LinkDiv>
                 <TextDiv>
                   <AddText>친구를 등록하세요.</AddText>
                 </TextDiv>
@@ -73,13 +73,13 @@ const Friends = () => {
             </FriendDiv>
             <FriendDiv>
               <NewDiv>
-                <Link to="/Input/1">
+                <LinkDiv to="/input/1">
                   <ButtonDIv>
                     <AddButton>
                       <PhotoImg src={require("../img/img_addfriend.png")} />
                     </AddButton>
                   </ButtonDIv>
-                </Link>
+                </LinkDiv>
                 <TextDiv>
                   <AddText>친구를 등록하세요.</AddText>
                 </TextDiv>
@@ -87,13 +87,13 @@ const Friends = () => {
             </FriendDiv>
             <FriendDiv>
               <NewDiv>
-                <Link to="/Input/1">
+                <LinkDiv to="/input/1">
                   <ButtonDIv>
                     <AddButton>
                       <PhotoImg src={require("../img/img_addfriend.png")} />
                     </AddButton>
                   </ButtonDIv>
-                </Link>
+                </LinkDiv>
                 <TextDiv>
                   <AddText>친구를 등록하세요.</AddText>
                 </TextDiv>
@@ -108,7 +108,13 @@ const Friends = () => {
 };
 const LinkDiv = styled(Link)`
   text-decoration: none;
-  // color: #5887f9;
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;
 
 const HomeDiv = styled.div`
