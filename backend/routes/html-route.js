@@ -209,11 +209,25 @@ module.exports = function(app, connection) {
         if(task==='yes'){
             sql = 'UPDATE `' + db + '`.todo SET `completed` = 1 WHERE `friendId` = ' + fid + ' AND `id` = ' + tid + ';'
             console.log(sql)
-            connection.query(sql, (err, result) => {
+            connection.query(sql, (err, result1) => {
                 if(err){
                     res.send(err)
                 } else {
-                    res.send(result)
+                    // add this function into the api-todo-yes
+                    // status: work
+                    var text = tid + ' has been done.'
+                    var completeDate = '2020-01-04'
+                    var sql = 'INSERT INTO `' + db + '`.activity (`text`, `fid`, `completeDate`) VALUES (?);'
+                    var values = [text, fid, completeDate]
+                    console.log(sql, values)
+                    connection.query(sql, [values], (err, result2) => {
+                        if(err) {
+                            res.send(err) 
+                        } else {
+                            res.send({result1: result1, result2:result2})
+                        }
+                    })
+                    //res.send(result)
                 }
             })
         } else if(task==='no') {
@@ -233,11 +247,37 @@ module.exports = function(app, connection) {
 
     /**
      * API call 'Activity'
-     * status:
+     * status: 
      */
     app.get('/api/activity', (req, res) => {
 
     })
+
+    /**
+     * API call 'Tip'
+     * status: work
+     */
+
+    app.get('/api/tip/image/:tipImgPath', (req, res) => {
+        var tipImgPath = req.params.tipImgPath
+        if(tipImgPath) res.sendFile(tipImgPath, { root: path.join(__dirname, '../public/images/tip/')})
+        else res.status(404)
+    })
+
+
+    // need to create info table in db first.
+    app.post('/api/friends/:friendId', (req, res) => {
+        var sql = 'INSERT INTO `' + db + '`.info;'
+        connection.query(sql, (err, result) => {
+            if(err){
+                res.send(err)
+            } else {
+                res.send(result)
+            }
+        })
+    })
+
+
 
     /**
      * API call 'Alerts'
