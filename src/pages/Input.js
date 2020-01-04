@@ -55,8 +55,19 @@ const Input = props => {
     setSex(event.target.value)
   }
 
-  const handleChangeProfileImageFile = (event) => {
+  const handleFileInput = (event) => {
     setProfileImageFile(event.target.files[0])
+  }
+
+  const handlePost = () => {
+    var formData = new FormData();
+    formData.append('file', profileImageFile);
+
+    return axios.post("http://localhost:3001/api/test/file", formData).then(res => {
+      alert(res)
+    }).catch(err => {
+      alert(err)
+    })
   }
 
   const handleChangeRelation = (event) => {
@@ -91,14 +102,16 @@ const Input = props => {
     <ContainerDiv>
       {/* { users } */}
       <TotalDiv>
+        
         <PhotoButton>
-          <TotalImg
-            src={require("../img/img_gallery.png")}
-            alt="img"
-          ></TotalImg>
-        </PhotoButton>
+            <TotalImg
+              src={require("../img/img_gallery.png")}
+              alt="img"
+            ></TotalImg>
+          </PhotoButton>
       </TotalDiv>
-
+      <input type="file" name="file" onChange={(e) => handleFileInput(e)}></input>
+      <button type="button" onClick={handlePost} class="btn"/>
       <DotDiv>
         <DotImg src={require("../img/ecllipses.png")} alt="img"></DotImg>
       </DotDiv>
@@ -546,5 +559,14 @@ const GoText = styled.text`
   text-align: center;
   color: #ffffff;
 `;
+
+const InputFile = styled.input`
+  width: 255px;
+  height: 500px;
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+`
 
 export default Input;
