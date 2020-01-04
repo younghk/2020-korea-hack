@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TabHome from "../components/TabHome";
 import Title from "../components/Title";
 import FriendStory from "../components/FriendStory";
@@ -6,7 +6,13 @@ import ToDo from "../components/ToDo";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
+
 const Home = () => {
+
+  const [todos, setTodos] = useState()
+  const [tips, setTips] = useState()
+
+
   return (
     <>
       <HomeDiv>

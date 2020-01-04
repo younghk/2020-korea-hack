@@ -56,7 +56,7 @@ const Input = props => {
   }
 
   const handleChangeProfileImageFile = (event) => {
-    setProfileImageFile(event.target.file)
+    setProfileImageFile(event.target.files[0])
   }
 
   const handleChangeRelation = (event) => {

@@ -1,60 +1,42 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
+import axios from 'axios';
+
 const FriendStory = ({ name, img }) => {
+
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    const apiURL = 'http://localhost:3001/api/home'
+    const fetchData = async () => {
+      const response = await axios.get(apiURL)
+    
+      console.log(response.data.users);
+      setUsers(response.data.users)
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <>
+      
       <StorysDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
+        {users.map(user => {
+          return([
+            <StoryDiv>
+              <ImgDiv>
+                {/* <BorderDiv> */}
+                <PhotoImg src={require("../img/yang.jpg")}></PhotoImg> 
+                {/* </BorderDiv> */}
+              </ImgDiv>
+              <NameDiv>
+                <NameText>{user.friendName}</NameText>
+              </NameDiv>
+            </StoryDiv>
+          ])
+        })}
       </StorysDiv>
     </>
   );
