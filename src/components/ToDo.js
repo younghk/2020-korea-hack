@@ -1,47 +1,50 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
-import axios from 'axios';
+import axios from "axios";
 
 const Todo = () => {
-
   const [todos, setTodos] = useState([]);
-  const [profileImageName, setProfileImageName] = useState([])
+  const [profileImageName, setProfileImageName] = useState([]);
 
   useEffect(() => {
-    const apiURL = 'http://localhost:3001/api/home'
+    const apiURL = "http://localhost:3001/api/home";
     const fetchData = async () => {
-      const response = await axios.get(apiURL)
+      const response = await axios.get(apiURL);
 
       console.log(response.data.todos);
       setTodos(response.data.todos);
 
-      const images = []
-      for ( var i = 0 ; i < response.data.todos.length; i++) {
-        images.push(response.data.todos[i].friendProfileImage)
+      const images = [];
+      for (var i = 0; i < response.data.todos.length; i++) {
+        images.push(response.data.todos[i].friendProfileImage);
       }
-      console.log('images:', images)
-      setProfileImageName(images)
-    }
+      console.log("images:", images);
+      setProfileImageName(images);
+    };
 
     fetchData();
   }, []);
 
-  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
+  const apiBaseURL = "http://localhost:3001/api/friends/profile/";
 
   return (
     <>
       <TodosDiv>
         {todos.map((todo, index) => {
-          return([
+          return [
             <TodoDiv>
               <ContentDiv>
                 <LeftDiv>
-                  <PhotoImg src={apiBaseURL + profileImageName[index]}></PhotoImg>
+                  <PhotoImg
+                    src={apiBaseURL + profileImageName[index]}
+                  ></PhotoImg>
                 </LeftDiv>
                 <RightDiv>
                   <MainDiv>
-                    <MainText>{todo.friendName} 님이 안부인사를 기다립니다</MainText>
+                    <MainText>
+                      {todo.friendName} 님이 안부인사를 기다립니다
+                    </MainText>
                   </MainDiv>
                   <SubDiv>
                     <DotImg />
@@ -56,7 +59,7 @@ const Todo = () => {
                 </Button>
               </ButtonDiv>
             </TodoDiv>
-          ])
+          ];
         })}
       </TodosDiv>
     </>
@@ -107,7 +110,7 @@ const MainDiv = styled.div`
   padding-top: 20px;
 `;
 const MainText = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;
@@ -125,7 +128,7 @@ const SubDiv = styled.div`
 `;
 const SubText = styled.text`
   display: flex;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 12px;
   font-weight: 500;
   font-stretch: normal;
@@ -157,7 +160,7 @@ const Button = styled.button`
 const ButtonText = styled.text`
   width: 22px;
   height: 18px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 12px;
   font-weight: 500;
   font-stretch: normal;

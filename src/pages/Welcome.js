@@ -45,7 +45,7 @@ const SubDiv = styled.div`
 const SubText = styled.text`
   width: 272px;
   height: 24px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;

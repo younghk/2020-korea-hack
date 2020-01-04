@@ -3,77 +3,78 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import TabFriends from "../components/TabFriends";
 
-import axios from 'axios'
+import axios from "axios";
 
 const ProfileModify = () => {
-
-  const [name, setName] = useState('');
-  const [profileImage, setProfileImage] = useState('');
+  const [name, setName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [profileImageFile, setProfileImageFile] = useState();
-  const [sex, setSex] = useState('female');
-  const [relation, setRelation] = useState('friend');
-  const [birth, setBirth] = useState('2020-01-04');
-  const [occupation, setOccupation] = useState('');
-  const [location, setLocation] = useState('');
-  const [hobby, setHobby] = useState('');
-  const [period, setPeriod] = useState('');
-  const [bornPlace, setBornPlace] = useState('');
+  const [sex, setSex] = useState("female");
+  const [relation, setRelation] = useState("friend");
+  const [birth, setBirth] = useState("2020-01-04");
+  const [occupation, setOccupation] = useState("");
+  const [location, setLocation] = useState("");
+  const [hobby, setHobby] = useState("");
+  const [period, setPeriod] = useState("");
+  const [bornPlace, setBornPlace] = useState("");
 
   useEffect(() => {
-    const apiURL = 'http://localhost:3001/api/friends/'
-  })
+    const apiURL = "http://localhost:3001/api/friends/";
+  });
 
-  const handleChange = (event) => {
-    setName(event.target.value)
-  }
+  const handleChange = event => {
+    setName(event.target.value);
+  };
 
-  const handleChangeSex = (event) => {
-    setSex({sex: event.target.value})
-  }
+  const handleChangeSex = event => {
+    setSex({ sex: event.target.value });
+  };
 
-  const handleFileInput = (event) => {
-    setProfileImageFile(event.target.files[0])
-  }
+  const handleFileInput = event => {
+    setProfileImageFile(event.target.files[0]);
+  };
 
   const handlePost = () => {
     var formData = new FormData();
-    formData.append('file', profileImageFile);
+    formData.append("file", profileImageFile);
 
-    return axios.post("http://localhost:3001/api/test/file", formData).then(res => {
-      alert(res)
-    }).catch(err => {
-      alert(err)
-    })
-  }
+    return axios
+      .post("http://localhost:3001/api/test/file", formData)
+      .then(res => {
+        alert(res);
+      })
+      .catch(err => {
+        alert(err);
+      });
+  };
 
-  const handleChangeRelation = (event) => {
-    setRelation(event.target.value)
-  }
+  const handleChangeRelation = event => {
+    setRelation(event.target.value);
+  };
 
-  const handleChangeBirth = (event) => {
-    setBirth(event.target.value)
-  }
+  const handleChangeBirth = event => {
+    setBirth(event.target.value);
+  };
 
-  const handleChangeOccupation = (event) => {
-    setOccupation(event.target.value)
-  }
+  const handleChangeOccupation = event => {
+    setOccupation(event.target.value);
+  };
 
-  const handleChangeLocation = (event) => {
-    setLocation(event.target.value)
-  }
+  const handleChangeLocation = event => {
+    setLocation(event.target.value);
+  };
 
-  const handleChangeHobby = (event) => {
-    setHobby(event.target.value)
-  }
+  const handleChangeHobby = event => {
+    setHobby(event.target.value);
+  };
 
-  const handleChangeBornPlace = (event) => {
-    setBornPlace(event.target.value)
-  }
-  
-  const handleChangePeriod = (event) => {
-    setPeriod(event.target.value)
-  }
+  const handleChangeBornPlace = event => {
+    setBornPlace(event.target.value);
+  };
 
+  const handleChangePeriod = event => {
+    setPeriod(event.target.value);
+  };
 
   return (
     <>
@@ -169,7 +170,7 @@ const TopDiv = styled.div`
 const TopText = styled.text`
   width: 200px;
   height: 29px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 20px;
   font-weight: 900;
   font-stretch: normal;
@@ -201,7 +202,7 @@ const InformationDiv = styled.div`
 const TitleText = styled.text`
   width: 43px;
   height: 18px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
@@ -214,7 +215,7 @@ const TitleText = styled.text`
 const ContentText = styled.text`
   width: 125px;
   height: 24px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
@@ -243,7 +244,7 @@ const Textarea = styled.textarea`
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom: 1.3px solid #e4e4e4;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 12px;
   line-height: 18px;
   color: black;
@@ -252,6 +253,6 @@ const Textarea = styled.textarea`
   }
   resize: none;
   outline: none;
-`
+`;
 
 export default ProfileModify;

@@ -6,42 +6,41 @@ import ToDo from "../components/ToDo";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-import axios from 'axios';
+import axios from "axios";
 
 const Friends = () => {
   const [open, setOpen] = useState(false);
 
-  const [friends, setFriends] = useState([])
-  const [friendNum, setFriendNum] = useState(0)
-  const [friendAdd, setFriendAdd] = useState([])
-  const [profileImageName, setProfileImageName] = useState([])
-  
-  useEffect(() => {
-    const apiURL = 'http://localhost:3001/api/friends/list'
-    const fetchData = async () => {
-      const response = await axios.get(apiURL)
+  const [friends, setFriends] = useState([]);
+  const [friendNum, setFriendNum] = useState(0);
+  const [friendAdd, setFriendAdd] = useState([]);
+  const [profileImageName, setProfileImageName] = useState([]);
 
-      console.log(response.data.friendsList)
-      setFriends(response.data.friendsList)
-      setFriendNum(5-response.data.friendsList.length)
-      
-      const items = []
-      const images = []
-      for ( var i = 0 ; i < 5-response.data.friendsList.length; i++) {
-        items.push(i)
+  useEffect(() => {
+    const apiURL = "http://localhost:3001/api/friends/list";
+    const fetchData = async () => {
+      const response = await axios.get(apiURL);
+
+      console.log(response.data.friendsList);
+      setFriends(response.data.friendsList);
+      setFriendNum(5 - response.data.friendsList.length);
+
+      const items = [];
+      const images = [];
+      for (var i = 0; i < 5 - response.data.friendsList.length; i++) {
+        items.push(i);
       }
-      for ( var i = 0 ; i < response.data.friendsList.length; i++) {
-        images.push(response.data.friendsList[i].friendProfileImage)
+      for (var i = 0; i < response.data.friendsList.length; i++) {
+        images.push(response.data.friendsList[i].friendProfileImage);
       }
-      console.log('images:', images)
-      setFriendAdd(items)
-      setProfileImageName(images)
-    }
+      console.log("images:", images);
+      setFriendAdd(items);
+      setProfileImageName(images);
+    };
 
     fetchData();
-    
-  }, [])
-  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
+  }, []);
+  const apiBaseURL = "http://localhost:3001/api/friends/profile/";
   const onToggle = () => setOpen(!open);
   return (
     <>
@@ -49,9 +48,9 @@ const Friends = () => {
         <Title name="친구목록" />
         <AllDiv>
           <FriendsDiv>
-            {friends.map((friend,index) => {
-              console.log('friendNum: ', friendNum)
-              return ([
+            {friends.map((friend, index) => {
+              console.log("friendNum: ", friendNum);
+              return [
                 <FriendDiv>
                   <LeftDiv>
                     <PhotoImg src={apiBaseURL + profileImageName[index]} />
@@ -65,18 +64,18 @@ const Friends = () => {
                     <br />
                   </CenterDiv>
                   <RightDiv>
-                    <Link to={'/profile/' + friend.id}>
+                    <Link to={"/profile/" + friend.id}>
                       <Button>
                         <img src={require("../img/ic_right.png")} />
                       </Button>
                     </Link>
                   </RightDiv>
                 </FriendDiv>
-              ])
+              ];
             })}
 
             {friendAdd.map(item => {
-              return ([
+              return [
                 <FriendDiv>
                   <NewDiv>
                     <Link to="/Input/1">
@@ -91,7 +90,7 @@ const Friends = () => {
                     </TextDiv>
                   </NewDiv>
                 </FriendDiv>
-              ])
+              ];
             })}
           </FriendsDiv>
         </AllDiv>
@@ -166,7 +165,7 @@ const CenterDiv = styled.div`
 const NameText = styled.text`
   width: 44px;
   height: 24px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -179,7 +178,7 @@ const NameText = styled.text`
 const RelationText = styled.text`
   width: 26px;
   height: 20px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -243,7 +242,7 @@ const TextDiv = styled.div`
 const AddText = styled.text`
   width: 150px;
   height: 24px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;

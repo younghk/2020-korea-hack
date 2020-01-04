@@ -6,12 +6,9 @@ import ToDo from "../components/ToDo";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-
 const Home = () => {
-
-  const [todos, setTodos] = useState()
-  const [tips, setTips] = useState()
-
+  const [todos, setTodos] = useState();
+  const [tips, setTips] = useState();
 
   return (
     <>
@@ -90,7 +87,7 @@ const TitleText = styled.text`
   // padding-top: 20px;
   width: 100%;
   height: 100%;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 18px;
   font-weight: bold;
   font-stretch: normal;
@@ -107,7 +104,7 @@ const SubText = styled.text`
   padding-top: 20px;
   width: 100%;
   height: 100%;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 9px;
   font-weight: bold;
   font-stretch: normal;

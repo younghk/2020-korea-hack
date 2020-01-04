@@ -53,7 +53,7 @@ const Textarea2 = styled.textarea`
   border-left-style: hidden;
   border-bottom: 1.3px solid #e4e4e4;
   background-color: #ffffff;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -96,7 +96,7 @@ const Image = styled.img`
   margin-right: 20px;
 `;
 const InputText4 = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
@@ -104,7 +104,7 @@ const InputText4 = styled.text`
   color: #4c5264;
 `;
 const InputText5blue = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;

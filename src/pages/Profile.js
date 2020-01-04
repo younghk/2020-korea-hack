@@ -4,22 +4,19 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import img from "../img/profile.jpg";
 const Profile = () => {
-
-  const [name, setName] = useState('');
-  const [profileImage, setProfileImage] = useState('');
+  const [name, setName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [profileImageFile, setProfileImageFile] = useState();
-  const [sex, setSex] = useState('female');
-  const [relation, setRelation] = useState('friend');
-  const [birth, setBirth] = useState('2020-01-04');
-  const [occupation, setOccupation] = useState('');
-  const [location, setLocation] = useState('');
-  const [hobby, setHobby] = useState('');
-  const [period, setPeriod] = useState('');
-  const [bornPlace, setBornPlace] = useState('');
+  const [sex, setSex] = useState("female");
+  const [relation, setRelation] = useState("friend");
+  const [birth, setBirth] = useState("2020-01-04");
+  const [occupation, setOccupation] = useState("");
+  const [location, setLocation] = useState("");
+  const [hobby, setHobby] = useState("");
+  const [period, setPeriod] = useState("");
+  const [bornPlace, setBornPlace] = useState("");
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -148,7 +145,7 @@ const TextDiv = styled.div`
 const NameText = styled.div`
   width: 66px;
   height: 36px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 24px;
   font-weight: 500;
   font-stretch: normal;
@@ -181,7 +178,7 @@ const SmallProfile = styled.div`
 const DetailText = styled.div`
   width: 144px;
   height: 24px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
@@ -230,7 +227,7 @@ const TabDiv = styled.div``;
 const TabOnText = styled.text`
   width: 65px;
   height: 20px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -249,7 +246,7 @@ const SelectedTab = styled.div`
 const TabOffText = styled.text`
   width: 64px;
   height: 20px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -267,7 +264,7 @@ const CommentDiv = styled.div`
 `;
 const CommentText = styled.div`
   height: 54px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 20px;
   font-weight: bold;
   font-stretch: normal;
@@ -295,7 +292,7 @@ const TitleDiv = styled.div`
   margin-bottom: 23px;
 `;
 const TitleText = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
@@ -312,7 +309,7 @@ const ContentText = styled.text`
   padding: 8px 11px 8px 11px;
   margin-right: 10px;
   border-radius: 6px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 10px;
   font-weight: normal;
   font-stretch: normal;

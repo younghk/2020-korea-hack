@@ -11,20 +11,20 @@ const Input = props => {
   const [pageNum, setPageNum] = useState(1);
   // const [users] = useState(' ')
   // added
-  const [name, setName] = useState('');
-  const [profileImage, setProfileImage] = useState('');
+  const [name, setName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [profileImageFile, setProfileImageFile] = useState();
-  const [sex, setSex] = useState('female');
-  const [relation, setRelation] = useState('friend');
-  const [birth, setBirth] = useState('2020-01-04');
-  const [occupation, setOccupation] = useState('');
-  const [location, setLocation] = useState('');
-  const [hobby, setHobby] = useState('');
-  const [period, setPeriod] = useState('');
-  const [bornPlace, setBornPlace] = useState('');
+  const [sex, setSex] = useState("female");
+  const [relation, setRelation] = useState("friend");
+  const [birth, setBirth] = useState("2020-01-04");
+  const [occupation, setOccupation] = useState("");
+  const [location, setLocation] = useState("");
+  const [hobby, setHobby] = useState("");
+  const [period, setPeriod] = useState("");
+  const [bornPlace, setBornPlace] = useState("");
   //const [phoneNumber, setPhoneNumber] = useState(props.name);
   //const [status, setSex] = useState(props.name);
-  
+
   useEffect(() => {
     setPageNum(Number(props.match.params.id));
     // const apiURL = 'http://localhost:3001/users/?userId=1'
@@ -36,56 +36,59 @@ const Input = props => {
     // }).catch(error => console.log(error));
   }, [pageNum, props.match.params.id]);
 
-  const handleChange = (event) => {
-    setName(event.target.value)
-  }
+  const handleChange = event => {
+    setName(event.target.value);
+  };
 
-  const handleChangeSex = (event) => {
-    setSex({sex: event.target.value})
-  }
+  const handleChangeSex = event => {
+    setSex({ sex: event.target.value });
+  };
 
-  const handleFileInput = (event) => {
-    setProfileImageFile(event.target.files[0])
-  }
+  const handleFileInput = event => {
+    setProfileImageFile(event.target.files[0]);
+  };
 
   const handlePost = () => {
     var formData = new FormData();
-    formData.append('file', profileImageFile);
+    formData.append("file", profileImageFile);
 
-    return axios.post("http://localhost:3001/api/test/file", formData).then(res => {
-      alert(res)
-    }).catch(err => {
-      alert(err)
-    })
-  }
+    return axios
+      .post("http://localhost:3001/api/test/file", formData)
+      .then(res => {
+        alert(res);
+      })
+      .catch(err => {
+        alert(err);
+      });
+  };
 
-  const handleChangeRelation = (event) => {
-    setRelation(event.target.value)
-  }
+  const handleChangeRelation = event => {
+    setRelation(event.target.value);
+  };
 
-  const handleChangeBirth = (event) => {
-    setBirth(event.target.value)
-  }
+  const handleChangeBirth = event => {
+    setBirth(event.target.value);
+  };
 
-  const handleChangeOccupation = (event) => {
-    setOccupation(event.target.value)
-  }
+  const handleChangeOccupation = event => {
+    setOccupation(event.target.value);
+  };
 
-  const handleChangeLocation = (event) => {
-    setLocation(event.target.value)
-  }
+  const handleChangeLocation = event => {
+    setLocation(event.target.value);
+  };
 
-  const handleChangeHobby = (event) => {
-    setHobby(event.target.value)
-  }
+  const handleChangeHobby = event => {
+    setHobby(event.target.value);
+  };
 
-  const handleChangeBornPlace = (event) => {
-    setBornPlace(event.target.value)
-  }
-  
-  const handleChangePeriod = (event) => {
-    setPeriod(event.target.value)
-  }
+  const handleChangeBornPlace = event => {
+    setBornPlace(event.target.value);
+  };
+
+  const handleChangePeriod = event => {
+    setPeriod(event.target.value);
+  };
 
   const Input1 = (
     <ContainerDiv>
@@ -116,7 +119,11 @@ const Input = props => {
           <TitleDiv2>
             <InputText2>친구의 이름을 입력하세요.</InputText2>
           </TitleDiv2>
-          <Textarea2 placeholder="이름을 입력하세요." value={name} onChange={handleChange}></Textarea2>
+          <Textarea2
+            placeholder="이름을 입력하세요."
+            value={name}
+            onChange={handleChange}
+          ></Textarea2>
         </BoxDiv>
       </InputDiv>
       <DotDiv>
@@ -133,7 +140,11 @@ const Input = props => {
             <IconImage src={require("../img/ic_user.png")} alt="img" />
             <InputText3>성별</InputText3>
           </TitleDiv3>
-          <Select placeholder="선택" onChange={(e) => setSex(e.target.value)} value={sex}>
+          <Select
+            placeholder="선택"
+            onChange={e => setSex(e.target.value)}
+            value={sex}
+          >
             <Option value="female" label="여"></Option>
             <Option value="male">남</Option>
           </Select>
@@ -143,7 +154,7 @@ const Input = props => {
             <IconImage src={require("../img/ic_user.png")} alt="img" />
             <InputText3>관계</InputText3>
           </TitleDiv3>
-        <Select onChange={(e) => setRelation(e.target.value)} value={relation}>
+          <Select onChange={e => setRelation(e.target.value)} value={relation}>
             <Option value="friend">친구</Option>
             <Option value="family">가족</Option>
             <Option value="lover">애인</Option>
@@ -174,21 +185,33 @@ const Input = props => {
             <InputText4>직업</InputText4>
             <InputText4blue>*</InputText4blue>
           </TitleDiv4>
-          <Textarea4 placeholder="대학생" value={occupation} onChange={handleChangeOccupation}></Textarea4>
+          <Textarea4
+            placeholder="대학생"
+            value={occupation}
+            onChange={handleChangeOccupation}
+          ></Textarea4>
         </BoxDiv4>
         <BoxDiv4>
           <TitleDiv4>
             <InputText4>거주 지역</InputText4>
             <InputText4blue>*</InputText4blue>
           </TitleDiv4>
-          <Textarea4 placeholder="서울시 성북구" value={location} onChange={handleChangeLocation}></Textarea4>
+          <Textarea4
+            placeholder="서울시 성북구"
+            value={location}
+            onChange={handleChangeLocation}
+          ></Textarea4>
         </BoxDiv4>
         <BoxDiv4>
           <TitleDiv4>
             <InputText4>취미</InputText4>
             <InputText4blue>*</InputText4blue>
           </TitleDiv4>
-          <Textarea4 placeholder="러닝, 아웃도어, 독서, 영화" value={hobby} onChange={handleChangeHobby}></Textarea4>
+          <Textarea4
+            placeholder="러닝, 아웃도어, 독서, 영화"
+            value={hobby}
+            onChange={handleChangeHobby}
+          ></Textarea4>
         </BoxDiv4>
       </InputDiv>
       <DotDiv>
@@ -208,14 +231,22 @@ const Input = props => {
             <InputText4>출신</InputText4>
             <InputText5blue>*</InputText5blue>
           </TitleDiv4>
-          <Textarea4 placeholder="경기도 고양시" value={bornPlace} onChange={handleChangeBornPlace}></Textarea4>
+          <Textarea4
+            placeholder="경기도 고양시"
+            value={bornPlace}
+            onChange={handleChangeBornPlace}
+          ></Textarea4>
         </BoxDiv4>
         <BoxDiv4>
           <TitleDiv4>
             <InputText4>서로 알고 지낸 기간</InputText4>
             <InputText5blue>*</InputText5blue>
           </TitleDiv4>
-          <Textarea4 placeholder="10년" value={period} onChange={handleChangePeriod}></Textarea4>
+          <Textarea4
+            placeholder="10년"
+            value={period}
+            onChange={handleChangePeriod}
+          ></Textarea4>
         </BoxDiv4>
         <Add />
         {/* <BoxDiv>
@@ -264,39 +295,43 @@ const Input = props => {
       setPageNum(pageNum - 1);
     } else {
       // added
-        console.log('friendName: ' + name)
-        console.log('friendProfileImage: ' + profileImage)
-        console.log('sex: ',sex)
-        console.log('relation: ',relation)
-        console.log('location: ',location)
-        console.log('birth: ',birth)
-        console.log('occupation: ',occupation)
-        console.log('period: ',period)
-        console.log('bornPlace: ',bornPlace)
-        console.log('hobby: ',hobby)
-      if(pageNum == 5){
-        let apiUrl = 'http://localhost:3001/api/friends'
-        axios.post(
-          apiUrl,
-          { friendName: name,
-            friendProfileImage: profileImage,
-            sex: sex,
-            relation: relation,
-            birth: birth,
-            occupation: occupation,
-            location: location,
-            hobby: hobby,
-            period: period },
-          { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-        ).then(res => {
-          console.log(res);
-          console.log(res.data);
-        }).catch(err => {
-          console.log(err)
-        })
+      console.log("friendName: " + name);
+      console.log("friendProfileImage: " + profileImage);
+      console.log("sex: ", sex);
+      console.log("relation: ", relation);
+      console.log("location: ", location);
+      console.log("birth: ", birth);
+      console.log("occupation: ", occupation);
+      console.log("period: ", period);
+      console.log("bornPlace: ", bornPlace);
+      console.log("hobby: ", hobby);
+      if (pageNum == 5) {
+        let apiUrl = "http://localhost:3001/api/friends";
+        axios
+          .post(
+            apiUrl,
+            {
+              friendName: name,
+              friendProfileImage: profileImage,
+              sex: sex,
+              relation: relation,
+              birth: birth,
+              occupation: occupation,
+              location: location,
+              hobby: hobby,
+              period: period
+            },
+            { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+          )
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
         props.history.push(`/`);
-      }
-      else{
+      } else {
         props.history.push(`/input/${pageNum + 1}`);
         setPageNum(pageNum + 1);
       }
@@ -399,14 +434,14 @@ const TotalImg = styled.img`
 
 const InputText1 = styled.text`
   margin-top: 50px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 38px;
   font-weight: 700;
   text-align: center;
 `;
 const InputText12 = styled.text`
   margin-top: 15px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -451,7 +486,7 @@ const TitleDiv4 = styled.div`
   align-items: center;
 `;
 const InputText4 = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
@@ -459,7 +494,7 @@ const InputText4 = styled.text`
   color: #4c5264;
 `;
 const InputText4blue = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
@@ -467,7 +502,7 @@ const InputText4blue = styled.text`
   color: #665eff;
 `;
 const InputText5blue = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
@@ -482,7 +517,7 @@ const Textarea4 = styled.textarea`
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom: 1.3px solid #e4e4e4;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 12px;
   line-height: 18px;
   color: black;
@@ -494,7 +529,7 @@ const Textarea4 = styled.textarea`
 `;
 const CommentText = styled.text`
   margin-bottom: 20px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 8px;
   font-weight: normal;
   text-align: right;
@@ -503,7 +538,7 @@ const CommentText = styled.text`
 `;
 const CommentText5 = styled.text`
   margin-bottom: 20px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 8px;
   font-weight: normal;
   text-align: right;
@@ -527,7 +562,7 @@ const IconImage = styled.img`
 
 const InputText3 = styled.text`
   margin-left: 16px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
@@ -537,7 +572,7 @@ const InputText3 = styled.text`
 
 // input2의 '친구의 이름을 입력하세요'
 const InputText2 = styled.text`
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 20px;
   font-weight: 400;
   text-align: center;
@@ -547,7 +582,7 @@ const InputText2 = styled.text`
 const InputText = styled.text`
   width: 200px;
   height: 23px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
@@ -603,7 +638,7 @@ const Textarea2 = styled.textarea`
   border-left-style: hidden;
   border-bottom: 2px solid #e4e4e4;
   // background-color: #ffffff;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 23px;
   font-weight: 700;
   line-height: 1.5;
@@ -624,7 +659,7 @@ const Textarea = styled.textarea`
   border-right-style: hidden;
   border-left-style: hidden;
   background-color: #ffffff;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
@@ -691,7 +726,7 @@ width: 155px;
 const BackText = styled.text`
   width: 26px;
   height: 20px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -704,7 +739,7 @@ const BackText = styled.text`
 const GoText = styled.text`
   width: 26px;
   height: 20px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -722,6 +757,6 @@ const InputFile = styled.input`
   background: none;
   display: flex;
   justify-content: center;
-`
+`;
 
 export default Input;

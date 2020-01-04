@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import TabSettings from "../components/TabSettings";
 
-
 const Settings = () => {
   return (
     <ContainerDiv>
@@ -47,7 +46,6 @@ const Settings = () => {
   );
 };
 
-
 const ContainerDiv = styled.div`
   flex: 1;
 `;
@@ -85,7 +83,7 @@ const CttextDiv = styled.div`
   flex: 5.5;
   width: 100%;
   height: 100%;
-  font-family: Gibson;
+  font-family: Noto Sans KR;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;

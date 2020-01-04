@@ -52,7 +52,7 @@ const TextDiv = styled.div`
   position: absolute;
   width: 150px;
   height: 29px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 20px;
   font-weight: 900;
   font-stretch: normal;
@@ -66,7 +66,7 @@ const TextDiv = styled.div`
 const TitleText = styled.text`
   width: 84px;
   height: 29px;
-  font-family: NotoSansCJKkr;
+  font-family: Noto Sans KR;
   font-size: 20px;
   font-weight: 900;
   font-stretch: normal;
