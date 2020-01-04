@@ -36,7 +36,7 @@ module.exports = function(app, connection) {
                 //console.log(data[0])
                 //console.log(data[1])
                 //console.log(data[2])
-                res.send({data:data})
+                res.send({users:data[0], todos:data[1], tips:data[2]})
             }
         })
     })
@@ -136,6 +136,7 @@ module.exports = function(app, connection) {
                 res.send(err)
             } else {
                 console.log(result)
+                // add file write code here
                 res.json({result: result})
             }
             console.log(err, result)
@@ -143,6 +144,19 @@ module.exports = function(app, connection) {
 
     })
 
+    /**
+     * API call 'Write Profile Image File'
+     * status: pending
+     */
+    app.post('/api/test/file', (req, res) => {
+        var filePath = path.join(__dirname, '../public/images/profile/') + req.body.friendProfileImage
+        var profileImageFile = req.body.profileImage
+        fs.appendFile(filePath, profileImageFile, (err) => {
+            if(err) {
+                res.send(err);
+            }
+        })
+    })
     /**
      * API call 'Schedule Creating'
      * status: work
