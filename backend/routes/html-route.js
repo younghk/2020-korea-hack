@@ -2,6 +2,9 @@ const mysql = require('mysql')
 const config = require('../config')
 const fs = require('fs')
 const path = require('path')
+const upload = require('./fileupload');
+
+const multer = require('multer')
 
 module.exports = function(app, connection) {
     var db = config.database
@@ -146,16 +149,22 @@ module.exports = function(app, connection) {
 
     /**
      * API call 'Write Profile Image File'
-     * status: pending
+     * status: work
      */
-    app.post('/api/test/file', (req, res) => {
-        var filePath = path.join(__dirname, '../public/images/profile/') + req.body.friendProfileImage
-        var profileImageFile = req.body.profileImage
-        fs.appendFile(filePath, profileImageFile, (err) => {
-            if(err) {
-                res.send(err);
+    app.post('/api/test/file', (req, res, next) => {
+        console.log(req)
+        upload(req, res, function(err) {
+            if (err instanceof multer.MulterError) {
+              return next(err);
+            } else if (err) {
+              return next(err);
             }
-        })
+            console.log('원본파일명 : ' + req.file.originalname)
+            console.log('저장파일명 : ' + req.file.filename)
+            console.log('크기 : ' + req.file.size)
+            // console.log('경로 : ' + req.file.location) s3 업로드시 업로드 url을 가져옴
+            return res.json({success:1});
+          });
     })
     /**
      * API call 'Schedule Creating'
