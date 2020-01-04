@@ -10,7 +10,21 @@ import Add from "../components/Add";
 const Input = props => {
   const [pageNum, setPageNum] = useState(1);
   // const [users] = useState(' ')
-
+  // added
+  const [name, setName] = useState(props.name);
+  const [profileImage, setProfileImage] = useState(props.name);
+  const [profileImageFile, setProfileImageFile] = useState(props.name);
+  const [sex, setSex] = useState(props.name);
+  const [relation, setRelation] = useState(props.name);
+  const [birth, setBirth] = useState(props.name);
+  const [occupation, setOccupation] = useState(props.name);
+  const [location, setLocation] = useState(props.name);
+  const [hobby, setHobby] = useState(props.name);
+  const [period, setPeriod] = useState(props.name);
+  const [bornPlace, setBornPlace] = useState(props.name);
+  //const [phoneNumber, setPhoneNumber] = useState(props.name);
+  //const [status, setSex] = useState(props.name);
+  
   useEffect(() => {
     setPageNum(Number(props.match.params.id));
     // const apiURL = 'http://localhost:3001/users/?userId=1'
@@ -21,6 +35,69 @@ const Input = props => {
     //   });
     // }).catch(error => console.log(error));
   }, [pageNum, props.match.params.id]);
+  useEffect(() => {
+    setSex('female')
+  }, [sex, 'female']);
+
+  useEffect(() => {
+    setRelation('친구');
+  }, [relation, '친구']);
+
+  useEffect(() => {
+    setBirth('2020-01-04');
+  }, [birth, '2020-01-04']);
+
+  const handleChange = (event) => {
+    setName(event.target.value)
+  }
+
+  const handleChangeSex = (event) => {
+    setSex(event.target.value)
+  }
+
+  const handleFileInput = (event) => {
+    setProfileImageFile(event.target.files[0])
+  }
+
+  const handlePost = () => {
+    var formData = new FormData();
+    formData.append('file', profileImageFile);
+
+    return axios.post("http://localhost:3001/api/test/file", formData).then(res => {
+      alert(res)
+    }).catch(err => {
+      alert(err)
+    })
+  }
+
+  const handleChangeRelation = (event) => {
+    setRelation(event.target.value)
+  }
+
+  const handleChangeBirth = (event) => {
+    setBirth(event.target.value)
+  }
+
+  const handleChangeOccupation = (event) => {
+    setOccupation(event.target.value)
+  }
+
+  const handleChangeLocation = (event) => {
+    setLocation(event.target.value)
+  }
+
+  const handleChangeHobby = (event) => {
+    setHobby(event.target.value)
+  }
+
+  const handleChangeBornPlace = (event) => {
+    setBornPlace(event.target.value)
+  }
+  
+  const handleChangePeriod = (event) => {
+    setPeriod(event.target.value)
+  }
+
   const Input1 = (
     <ContainerDiv>
       {/* { users } */}
@@ -50,7 +127,7 @@ const Input = props => {
           <TitleDiv2>
             <InputText2>친구의 이름을 입력하세요.</InputText2>
           </TitleDiv2>
-          <Textarea2 placeholder="이름을 입력하세요."></Textarea2>
+          <Textarea2 placeholder="이름을 입력하세요." value={name} onChange={handleChange}></Textarea2>
         </BoxDiv>
       </InputDiv>
       <DotDiv>
@@ -67,7 +144,7 @@ const Input = props => {
             <IconImage src={require("../img/ic_user.png")} alt="img" />
             <InputText3>성별</InputText3>
           </TitleDiv3>
-          <Select placeholder="선택">
+          <Select placeholder="선택" value={sex} onChange={handleChangeSex}>
             <Option value="female">여</Option>
             <Option value="male">남</Option>
           </Select>
@@ -77,7 +154,7 @@ const Input = props => {
             <IconImage src={require("../img/ic_user.png")} alt="img" />
             <InputText3>관계</InputText3>
           </TitleDiv3>
-          <Select>
+          <Select value={relation} onChange={handleChangeRelation}>
             <Option value="friend" selected>
               친구
             </Option>
@@ -110,21 +187,21 @@ const Input = props => {
             <InputText4>직업</InputText4>
             <InputText4blue>*</InputText4blue>
           </TitleDiv4>
-          <Textarea4 placeholder="대학생"></Textarea4>
+          <Textarea4 placeholder="대학생" value={occupation} onChange={handleChangeOccupation}></Textarea4>
         </BoxDiv4>
         <BoxDiv4>
           <TitleDiv4>
             <InputText4>거주 지역</InputText4>
             <InputText4blue>*</InputText4blue>
           </TitleDiv4>
-          <Textarea4 placeholder="서울시 성북구"></Textarea4>
+          <Textarea4 placeholder="서울시 성북구" value={location} onChange={handleChangeLocation}></Textarea4>
         </BoxDiv4>
         <BoxDiv4>
           <TitleDiv4>
             <InputText4>취미</InputText4>
             <InputText4blue>*</InputText4blue>
           </TitleDiv4>
-          <Textarea4 placeholder="러닝, 아웃도어, 독서, 영화"></Textarea4>
+          <Textarea4 placeholder="러닝, 아웃도어, 독서, 영화" value={hobby} onChange={handleChangeHobby}></Textarea4>
         </BoxDiv4>
       </InputDiv>
       <DotDiv>
@@ -144,14 +221,14 @@ const Input = props => {
             <InputText4>출신</InputText4>
             <InputText5blue>*</InputText5blue>
           </TitleDiv4>
-          <Textarea4 placeholder="경기도 고양시"></Textarea4>
+          <Textarea4 placeholder="경기도 고양시" value={bornPlace} onChange={handleChangeBornPlace}></Textarea4>
         </BoxDiv4>
         <BoxDiv4>
           <TitleDiv4>
             <InputText4>서로 알고 지낸 기간</InputText4>
             <InputText5blue>*</InputText5blue>
           </TitleDiv4>
-          <Textarea4 placeholder="10년"></Textarea4>
+          <Textarea4 placeholder="10년" value={period} onChange={handleChangePeriod}></Textarea4>
         </BoxDiv4>
         <Add />
         {/* <BoxDiv>
@@ -199,8 +276,43 @@ const Input = props => {
       props.history.push(`/input/${pageNum - 1}`);
       setPageNum(pageNum - 1);
     } else {
-      props.history.push(`/input/${pageNum + 1}`);
-      setPageNum(pageNum + 1);
+      // added
+        console.log('friendName: ' + name)
+        console.log('friendProfileImage: ' + profileImage)
+        console.log('sex: ',sex)
+        console.log('relation: ',relation)
+        console.log('location: ',location)
+        console.log('birth: ',birth)
+        console.log('occupation: ',occupation)
+        console.log('period: ',period)
+        console.log('bornPlace: ',bornPlace)
+        console.log('hobby: ',hobby)
+      if(pageNum == 5){
+        let apiUrl = 'http://localhost:3001/api/friends'
+        axios.post(
+          apiUrl,
+          { friendName: name,
+            friendProfileImage: profileImage,
+            sex: sex,
+            relation: relation,
+            birth: birth,
+            occupation: occupation,
+            location: location,
+            hobby: hobby,
+            period: period },
+          { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+        ).then(res => {
+          console.log(res);
+          console.log(res.data);
+        }).catch(err => {
+          console.log(err)
+        })
+        props.history.push(`/`);
+      }
+      else{
+        props.history.push(`/input/${pageNum + 1}`);
+        setPageNum(pageNum + 1);
+      }
     }
   };
 
@@ -615,5 +727,14 @@ const GoText = styled.text`
   text-align: center;
   color: #ffffff;
 `;
+
+const InputFile = styled.input`
+  width: 255px;
+  height: 500px;
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+`
 
 export default Input;

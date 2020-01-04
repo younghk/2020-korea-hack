@@ -1,54 +1,63 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
+import axios from 'axios';
+
 const Todo = () => {
+
+  const [todos, setTodos] = useState([]);
+  const [profileImageName, setProfileImageName] = useState([])
+
+  useEffect(() => {
+    const apiURL = 'http://localhost:3001/api/home'
+    const fetchData = async () => {
+      const response = await axios.get(apiURL)
+
+      console.log(response.data.todos);
+      setTodos(response.data.todos);
+
+      const images = []
+      for ( var i = 0 ; i < response.data.todos.length; i++) {
+        images.push(response.data.todos[i].friendProfileImage)
+      }
+      console.log('images:', images)
+      setProfileImageName(images)
+    }
+
+    fetchData();
+  }, []);
+
+  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
+
   return (
     <>
       <TodosDiv>
-        <TodoDiv>
-          <ContentDiv>
-            <LeftDiv>
-              <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            </LeftDiv>
-            <RightDiv>
-              <MainDiv>
-                <MainText>이름 님이 안부인사를 기다립니다</MainText>
-              </MainDiv>
-              <SubDiv>
-                <DotImg />
-                <SubText>1일 남음</SubText>
-              </SubDiv>
-            </RightDiv>
-          </ContentDiv>
-          <ButtonDiv>
-            <Button>
-              <img src={require("../img/ic_check.png")} />
-              <ButtonText>Clear</ButtonText>
-            </Button>
-          </ButtonDiv>
-        </TodoDiv>
-        <TodoDiv>
-          <ContentDiv>
-            <LeftDiv>
-              <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            </LeftDiv>
-            <RightDiv>
-              <MainDiv>
-                <MainText>이름 님이 안부인사를 기다립니다</MainText>
-              </MainDiv>
-              <SubDiv>
-                <DotImg />
-                <SubText>1일 남음</SubText>
-              </SubDiv>
-            </RightDiv>
-          </ContentDiv>
-          <ButtonDiv>
-            <Button>
-              <img src={require("../img/ic_check.png")} />
-              <ButtonText>Clear</ButtonText>
-            </Button>
-          </ButtonDiv>
-        </TodoDiv>
+        {todos.map((todo, index) => {
+          return([
+            <TodoDiv>
+              <ContentDiv>
+                <LeftDiv>
+                  <PhotoImg src={apiBaseURL + profileImageName[index]}></PhotoImg>
+                </LeftDiv>
+                <RightDiv>
+                  <MainDiv>
+                    <MainText>{todo.friendName} 님이 안부인사를 기다립니다</MainText>
+                  </MainDiv>
+                  <SubDiv>
+                    <DotImg />
+                    <SubText>{todo.remainDays}일 남음</SubText>
+                  </SubDiv>
+                </RightDiv>
+              </ContentDiv>
+              <ButtonDiv>
+                <Button>
+                  <img src={require("../img/ic_check.png")} />
+                  <ButtonText>Clear</ButtonText>
+                </Button>
+              </ButtonDiv>
+            </TodoDiv>
+          ])
+        })}
       </TodosDiv>
     </>
   );

@@ -1,60 +1,53 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
+import axios from 'axios';
+
 const FriendStory = ({ name, img }) => {
+
+  const [users, setUsers] = useState([])
+  const [profile, setProfile] = useState()
+  const [profileImageName, setProfileImageName] = useState([])
+
+  useEffect(() => {
+    const apiURL = 'http://localhost:3001/api/home'
+    const fetchData = async () => {
+      const response = await axios.get(apiURL)
+    
+      console.log(response.data.users);
+      setUsers(response.data.users)
+      const images = []
+      for ( var i = 0 ; i < response.data.users.length; i++) {
+        images.push(response.data.users[i].friendProfileImage)
+      }
+      console.log('images:', images)
+      setProfileImageName(images)
+    }
+
+    fetchData();
+
+
+  }, []);
+
+  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
+
   return (
     <>
       <StorysDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
-        <StoryDiv>
-          <ImgDiv>
-            {/* <BorderDiv> */}
-            <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            {/* </BorderDiv> */}
-          </ImgDiv>
-          <NameDiv>
-            <NameText>김민철</NameText>
-          </NameDiv>
-        </StoryDiv>
+        {users.map((user, index) => {
+          return([
+            <StoryDiv>
+              <ImgDiv>
+                {/* <BorderDiv> */}
+                <PhotoImg src={apiBaseURL + profileImageName[index]}></PhotoImg> 
+                {/* </BorderDiv> */}
+              </ImgDiv>
+              <NameDiv>
+                <NameText>{user.friendName}</NameText>
+              </NameDiv>
+            </StoryDiv>
+          ])
+        })}
       </StorysDiv>
     </>
   );

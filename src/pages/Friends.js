@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TabFriends from "../components/TabFriends";
 import Title from "../components/Title";
 import FriendStory from "../components/FriendStory";
@@ -6,9 +6,42 @@ import ToDo from "../components/ToDo";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
+import axios from 'axios';
+
 const Friends = () => {
   const [open, setOpen] = useState(false);
 
+  const [friends, setFriends] = useState([])
+  const [friendNum, setFriendNum] = useState(0)
+  const [friendAdd, setFriendAdd] = useState([])
+  const [profileImageName, setProfileImageName] = useState([])
+  
+  useEffect(() => {
+    const apiURL = 'http://localhost:3001/api/friends/list'
+    const fetchData = async () => {
+      const response = await axios.get(apiURL)
+
+      console.log(response.data.friendsList)
+      setFriends(response.data.friendsList)
+      setFriendNum(5-response.data.friendsList.length)
+      
+      const items = []
+      const images = []
+      for ( var i = 0 ; i < 5-response.data.friendsList.length; i++) {
+        items.push(i)
+      }
+      for ( var i = 0 ; i < response.data.friendsList.length; i++) {
+        images.push(response.data.friendsList[i].friendProfileImage)
+      }
+      console.log('images:', images)
+      setFriendAdd(items)
+      setProfileImageName(images)
+    }
+
+    fetchData();
+    
+  }, [])
+  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
   const onToggle = () => setOpen(!open);
   return (
     <>
@@ -16,89 +49,50 @@ const Friends = () => {
         <Title name="친구목록" />
         <AllDiv>
           <FriendsDiv>
-            <FriendDiv>
-              <LeftDiv>
-                <PhotoImg src={require("../img/yang.jpg")} />
-              </LeftDiv>
-              <CenterDiv>
-                <NameText>김민철</NameText>
-                <br />
-                <RelationText>친구</RelationText>
-                <br />
-                <DayText>연락한지 2일째</DayText>
-                <br />
-              </CenterDiv>
-              <RightDiv>
-                <LinkDiv to="/profile">
-                  <Button>
-                    <img src={require("../img/ic_right.png")} />
-                  </Button>
-                </LinkDiv>
-              </RightDiv>
-            </FriendDiv>
-            <FriendDiv>
-              <LeftDiv>
-                <PhotoImg src={require("../img/yang.jpg")} />
-              </LeftDiv>
-              <CenterDiv>
-                <NameText>김민철</NameText>
-                <br />
-                <RelationText>친구</RelationText>
-                <br />
-                <DayText>연락한지 2일째</DayText>
-                <br />
-              </CenterDiv>
-              <RightDiv>
-                <LinkDiv to="/friend">
-                  <Button>
-                    <img src={require("../img/ic_right.png")} />
-                  </Button>
-                </LinkDiv>
-              </RightDiv>
-            </FriendDiv>
+            {friends.map((friend,index) => {
+              console.log('friendNum: ', friendNum)
+              return ([
+                <FriendDiv>
+                  <LeftDiv>
+                    <PhotoImg src={apiBaseURL + profileImageName[index]} />
+                  </LeftDiv>
+                  <CenterDiv>
+                    <NameText>{friend.friendName}</NameText>
+                    <br />
+                    <RelationText></RelationText>
+                    <br />
+                    <DayText>연락한지 2일째</DayText>
+                    <br />
+                  </CenterDiv>
+                  <RightDiv>
+                    <Link to="/Friend">
+                      <Button>
+                        <img src={require("../img/ic_right.png")} />
+                      </Button>
+                    </Link>
+                  </RightDiv>
+                </FriendDiv>
+              ])
+            })}
 
-            <FriendDiv>
-              <NewDiv>
-                <LinkDiv to="/input/1">
-                  <ButtonDIv>
-                    <AddButton>
-                      <PhotoImg src={require("../img/img_addfriend.png")} />
-                    </AddButton>
-                  </ButtonDIv>
-                </LinkDiv>
-                <TextDiv>
-                  <AddText>친구를 등록하세요.</AddText>
-                </TextDiv>
-              </NewDiv>
-            </FriendDiv>
-            <FriendDiv>
-              <NewDiv>
-                <LinkDiv to="/input/1">
-                  <ButtonDIv>
-                    <AddButton>
-                      <PhotoImg src={require("../img/img_addfriend.png")} />
-                    </AddButton>
-                  </ButtonDIv>
-                </LinkDiv>
-                <TextDiv>
-                  <AddText>친구를 등록하세요.</AddText>
-                </TextDiv>
-              </NewDiv>
-            </FriendDiv>
-            <FriendDiv>
-              <NewDiv>
-                <LinkDiv to="/input/1">
-                  <ButtonDIv>
-                    <AddButton>
-                      <PhotoImg src={require("../img/img_addfriend.png")} />
-                    </AddButton>
-                  </ButtonDIv>
-                </LinkDiv>
-                <TextDiv>
-                  <AddText>친구를 등록하세요.</AddText>
-                </TextDiv>
-              </NewDiv>
-            </FriendDiv>
+            {friendAdd.map(item => {
+              return ([
+                <FriendDiv>
+                  <NewDiv>
+                    <Link to="/Input/1">
+                      <ButtonDIv>
+                        <AddButton>
+                          <PhotoImg src={require("../img/img_addfriend.png")} />
+                        </AddButton>
+                      </ButtonDIv>
+                    </Link>
+                    <TextDiv>
+                      <AddText>친구를 등록하세요.</AddText>
+                    </TextDiv>
+                  </NewDiv>
+                </FriendDiv>
+              ])
+            })}
           </FriendsDiv>
         </AllDiv>
         <TabFriends />
