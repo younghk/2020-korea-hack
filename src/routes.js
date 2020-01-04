@@ -6,6 +6,10 @@ import Friends from "./pages/Friends";
 import TodoList from "./pages/ToDoList";
 import Notice from "./pages/Notice";
 import Message from "./pages/Message";
+import Profile from "./pages/Profile";
+import ProfileModify from "./pages/ProfileModify";
+import ProfileTodo from "./pages/ProfileTodo";
+import ProfileActive from "./pages/ProfileActive";
 
 const routes = [
   {
@@ -54,6 +58,30 @@ const routes = [
     path: "/message",
     component: Message,
     name: "메시지",
+    exact: false
+  },
+  {
+    path: "/profile",
+    component: Profile,
+    name: "프로필",
+    exact: false
+  },
+  {
+    path: "/profilemodify",
+    component: ProfileModify,
+    name: "정보 추가/수정",
+    exact: false
+  },
+  {
+    path: "/profiltodo",
+    component: ProfileTodo,
+    name: "프로필 투두",
+    exact: false
+  },
+  {
+    path: "/profileactive",
+    component: ProfileActive,
+    name: "프로필 통계",
     exact: false
   }
 ];
