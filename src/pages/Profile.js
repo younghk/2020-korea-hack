@@ -22,6 +22,8 @@ const Profile = () => {
     <>
       <AllDiv>
         <TopDiv>
+          {/* 큰 프사 들어가는 곳! */}
+          <BackImg src={require("../img/profile.jpg")} />
           <TextDiv>
             <NameText>존잘남</NameText>
 
@@ -39,7 +41,8 @@ const Profile = () => {
               </ModifyButton>
             </LinkDiv>
           </ModifyDiv>
-          <SmallProfile></SmallProfile>
+          {/* 작은 프사 들어가는 곳! */}
+          <SmallImg src={require("../img/profile.jpg")} />
           <TabsDiv>
             <TabDiv>
               <TabOnText>정보</TabOnText>
@@ -127,8 +130,8 @@ const TopDiv = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  background: url(${img}) no-repeat;
-  // background-color: blue;
+  // background: url(${img}) no-repeat;
+  background-color: blue;
   background-size: cover;
   height: 458px;
   width: 375px;
@@ -136,14 +139,22 @@ const TopDiv = styled.div`
   justify-content: center;
   align-items: flex-end;
 `;
+const BackImg = styled.img`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 458px;
+  width: 375px;
+  object-fit: cover;
+`;
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  z-index: 10;
 `;
 const NameText = styled.div`
-  width: 66px;
   height: 36px;
   font-family: Noto Sans KR;
   font-size: 24px;
@@ -155,28 +166,7 @@ const NameText = styled.div`
   text-align: center;
   color: #ffffff;
 `;
-const StarImg = styled.img`
-  height: 52px;
-`;
-const SmallProfile = styled.div`
-  position: absolute;
-  top: 475px;
-  left: 20px;
-  background: url(${img}) no-repeat;
-  background-size: cover;
-  // background-color: blue;
-  height: 66px;
-  width: 66px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  z-index: 10;
-  box-sizing: border-box;
-  border-radius: 10px;
-  border: solid white 3px;
-`;
 const DetailText = styled.div`
-  width: 144px;
   height: 24px;
   font-family: Noto Sans KR;
   font-size: 16px;
@@ -188,7 +178,25 @@ const DetailText = styled.div`
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
 `;
+const StarImg = styled.img`
+  height: 52px;
+`;
 
+const SmallImg = styled.img`
+  position: absolute;
+  top: 475px;
+  left: 20px;
+  object-fit: cover;
+  height: 66px;
+  width: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 10;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: solid white 3px;
+`;
 const MiddleDiv = styled.div`
   //   background-color: blue;
   margin: 452px 0 0 0;
