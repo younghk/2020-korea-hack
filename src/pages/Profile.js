@@ -10,12 +10,13 @@ const Profile = () => {
         <TopDiv>
           <TextDiv>
             <NameText>존잘남</NameText>
-            <br />
+
             <DetailText>대학생, 서울시 성북구</DetailText>
-            <br />
+
             <StarImg src={require("../img/그룹 1581.png")} />
           </TextDiv>
         </TopDiv>
+
         <MiddleDiv>
           <ModifyDiv>
             <LinkDiv to="/profilemodify">
@@ -24,6 +25,7 @@ const Profile = () => {
               </ModifyButton>
             </LinkDiv>
           </ModifyDiv>
+          <SmallProfile></SmallProfile>
           <TabsDiv>
             <TabDiv>
               <TabOnText>정보</TabOnText>
@@ -39,11 +41,14 @@ const Profile = () => {
               </LinkDiv>
             </TabDiv>
           </TabsDiv>
-          <ComentDiv>
-            <ComentText>소중한 사람에 대해 기억하고,</ComentText>
-            <br />
-            <ComentText>더 알아보아요!</ComentText>
-          </ComentDiv>
+          <SelectedTab></SelectedTab>
+
+          <CommentDiv>
+            <CommentText>
+              소중한 사람에 대해 기억하고,
+              <br />더 알아보아요!
+            </CommentText>
+          </CommentDiv>
         </MiddleDiv>
         <BottomDiv>
           <BoxDiv>
@@ -60,6 +65,8 @@ const Profile = () => {
             </TitleDiv>
             <ContentDiv>
               <ContentText>#러닝</ContentText>
+              <ContentText>#아웃도어</ContentText>
+              <ContentText>#소설읽기</ContentText>
             </ContentDiv>
           </BoxDiv>
           <BoxDiv>
@@ -96,29 +103,32 @@ const LinkDiv = styled(Link)`
 `;
 
 const AllDiv = styled.div`
-  display: block;
-  width: 100%;
-  height: 850px;
-  //   background-color: red;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
-  justify-content: center;
+  box-sizing: border-box;
 `;
 const TopDiv = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
   background: url(${img}) no-repeat;
-  background-size: 100%;
-  width: 100%;
-  height: 35%;
+  // background-color: blue;
+  background-size: cover;
+  height: 458px;
+  width: 375px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `;
 const TextDiv = styled.div`
-  display: block;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
 `;
-const NameText = styled.text`
+const NameText = styled.div`
   width: 66px;
   height: 36px;
   font-family: NotoSansCJKkr;
@@ -126,12 +136,32 @@ const NameText = styled.text`
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.17;
+  line-height: 28px;
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
 `;
-const DetailText = styled.text`
+const StarImg = styled.img`
+  height: 52px;
+`;
+const SmallProfile = styled.div`
+  position: absolute;
+  top: 475px;
+  left: 20px;
+  background: url(${img}) no-repeat;
+  background-size: cover;
+  // background-color: blue;
+  height: 66px;
+  width: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 10;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: solid white 3px;
+`;
+const DetailText = styled.div`
   width: 144px;
   height: 24px;
   font-family: NotoSansCJKkr;
@@ -139,17 +169,15 @@ const DetailText = styled.text`
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.25;
+  line-height: 20px;
   letter-spacing: normal;
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
 `;
-const StarImg = styled.img``;
+
 const MiddleDiv = styled.div`
-  height: 178px;
-  width: 100%;
   //   background-color: blue;
-  margin: 0;
+  margin: 452px 0 0 0;
   padding: 0;
 `;
 const ModifyDiv = styled.div`
@@ -163,7 +191,7 @@ const ModifyDiv = styled.div`
 `;
 const ModifyImg = styled.img`
   height: 50px;
-  width: 100%;
+  width: 375px;
   margin: 0;
   padding: 0;
 `;
@@ -173,16 +201,17 @@ const ModifyButton = styled.button`
 `;
 const TabsDiv = styled.div`
   width: 375px;
-  height: 74px;
-  background-color: #ffffff;
+  height: 38px;
+  margin-top: 36px;
   flex-direction: row;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
+  border-bottom: solid 1px #e2e8ed;
 `;
 const TabDiv = styled.div``;
 const TabOnText = styled.text`
-  width: 64px;
+  width: 65px;
   height: 20px;
   font-family: NotoSansCJKkr;
   font-size: 14px;
@@ -193,6 +222,12 @@ const TabOnText = styled.text`
   letter-spacing: normal;
   text-align: center;
   color: #5887f9;
+`;
+const SelectedTab = styled.div`
+  width: 65px;
+  height: 3px;
+  background-color: #5887f9;
+  margin-left: 20px;
 `;
 const TabOffText = styled.text`
   width: 64px;
@@ -207,16 +242,14 @@ const TabOffText = styled.text`
   text-align: center;
   color: black;
 `;
-const ComentDiv = styled.div`
-  width: 375px;
-  height: 111px;
+const CommentDiv = styled.div`
   display: block;
   justify-content: center;
   align-items: center;
+  margin: 25.5px 0 23px 20px;
 `;
-const ComentText = styled.text`
-  width: 375px;
-  height: 111px;
+const CommentText = styled.div`
+  height: 54px;
   font-family: NotoSansCJKkr;
   font-size: 20px;
   font-weight: bold;
@@ -225,27 +258,26 @@ const ComentText = styled.text`
   line-height: 1.2;
   letter-spacing: normal;
   text-align: left;
-  color: var(--slate);
+  color: #4c5264;
 `;
 const BottomDiv = styled.div`
-  height: 50%;
-  width: 100%;
+  position: relative;
+  left: -9px;
+  width: 375px;
 `;
 const BoxDiv = styled.div`
   width: 375px;
   height: 126.3px;
-  border: solid 0.3px #bcc5d3;
-  background-color: #ffffff;
   padding-left: 32px;
-  border: solid 0.3px #bcc5d3;
-  display: flex
+  border-top: solid 0.3px #bcc5d3;
+  display: flex;
   flex-direction: column;
-  align-items: space-around;
+  justify-content: center;
 `;
-const TitleDiv = styled.div``;
+const TitleDiv = styled.div`
+  margin-bottom: 23px;
+`;
 const TitleText = styled.text`
-  width: 26px;
-  height: 20px;
   font-family: NotoSansCJKkr;
   font-size: 14px;
   font-weight: bold;
@@ -256,14 +288,13 @@ const TitleText = styled.text`
   text-align: left;
   color: #5574f7;
 `;
-const ContentDiv = styled.div`
-  width: 75px;
-  height: 30px;
-  object-fit: contain;
-`;
+const ContentDiv = styled.div``;
 const ContentText = styled.text`
+  background-color: #5574f7;
   width: 26px;
-  height: 15px;
+  padding: 8px 11px 8px 11px;
+  margin-right: 10px;
+  border-radius: 6px;
   font-family: NotoSansCJKkr;
   font-size: 10px;
   font-weight: normal;
@@ -273,7 +304,6 @@ const ContentText = styled.text`
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
-  background-color: #5574f7;
 `;
 
 export default Profile;
