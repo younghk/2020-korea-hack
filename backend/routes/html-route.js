@@ -49,7 +49,7 @@ module.exports = function(app, connection) {
      * Response specific friend's data by friendId
      * status: work
      */
-    app.get('/friends/', (req, res) => {
+    app.get('/api/friends/', (req, res) => {
         var friendId = req.query.friendId
         //var userId = req.params.userId // app.get('/users/:userId', ()=>)
         var sql = 'SELECT * FROM `' + db + '`.friend WHERE id = ' + connection.escape(friendId)
@@ -76,10 +76,13 @@ module.exports = function(app, connection) {
      * API call 'Friend Profile Image'
      * status: work
      */
-    app.get('/friends/profile/:profileImgPath', (req, res) => {
+    app.get('/api/friends/profile/:profileImgPath', (req, res) => {
         var profileImgPath = req.params.profileImgPath
         //console.log(profileImgPath)
-        if(profileImgPath) res.sendFile(profileImgPath, { root: path.join(__dirname, '../public/images/profile/')})
+        if(profileImgPath){
+            console.log(res)
+            res.sendFile(profileImgPath, { root: path.join(__dirname, '../public/images/profile/')})
+        }
         else res.status(404)
     })
 
@@ -152,13 +155,14 @@ module.exports = function(app, connection) {
      * status: work
      */
     app.post('/api/test/file', (req, res, next) => {
-        console.log(req)
+        //console.log(req)
         upload(req, res, function(err) {
             if (err instanceof multer.MulterError) {
               return next(err);
             } else if (err) {
               return next(err);
             }
+            console.log(req.file)
             console.log('원본파일명 : ' + req.file.originalname)
             console.log('저장파일명 : ' + req.file.filename)
             console.log('크기 : ' + req.file.size)
