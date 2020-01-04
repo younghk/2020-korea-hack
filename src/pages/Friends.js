@@ -14,6 +14,7 @@ const Friends = () => {
   const [friends, setFriends] = useState([])
   const [friendNum, setFriendNum] = useState(0)
   const [friendAdd, setFriendAdd] = useState([])
+  const [profileImageName, setProfileImageName] = useState([])
   
   useEffect(() => {
     const apiURL = 'http://localhost:3001/api/friends/list'
@@ -25,15 +26,22 @@ const Friends = () => {
       setFriendNum(5-response.data.friendsList.length)
       
       const items = []
+      const images = []
       for ( var i = 0 ; i < 5-response.data.friendsList.length; i++) {
         items.push(i)
       }
+      for ( var i = 0 ; i < response.data.friendsList.length; i++) {
+        images.push(response.data.friendsList[i].friendProfileImage)
+      }
+      console.log('images:', images)
       setFriendAdd(items)
+      setProfileImageName(images)
     }
 
     fetchData();
+    
   }, [])
-
+  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
   const onToggle = () => setOpen(!open);
   return (
     <>
@@ -41,12 +49,12 @@ const Friends = () => {
         <Title name="친구목록" />
         <AllDiv>
           <FriendsDiv>
-            {friends.map(friend => {
+            {friends.map((friend,index) => {
               console.log('friendNum: ', friendNum)
               return ([
                 <FriendDiv>
                   <LeftDiv>
-                    <PhotoImg src={require("../img/yang.jpg")} />
+                    <PhotoImg src={apiBaseURL + profileImageName[index]} />
                   </LeftDiv>
                   <CenterDiv>
                     <NameText>{friend.friendName}</NameText>

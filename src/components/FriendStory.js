@@ -7,6 +7,7 @@ const FriendStory = ({ name, img }) => {
 
   const [users, setUsers] = useState([])
   const [profile, setProfile] = useState()
+  const [profileImageName, setProfileImageName] = useState([])
 
   useEffect(() => {
     const apiURL = 'http://localhost:3001/api/home'
@@ -15,6 +16,12 @@ const FriendStory = ({ name, img }) => {
     
       console.log(response.data.users);
       setUsers(response.data.users)
+      const images = []
+      for ( var i = 0 ; i < response.data.users.length; i++) {
+        images.push(response.data.users[i].friendProfileImage)
+      }
+      console.log('images:', images)
+      setProfileImageName(images)
     }
 
     fetchData();
@@ -22,15 +29,17 @@ const FriendStory = ({ name, img }) => {
 
   }, []);
 
+  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
+
   return (
     <>
       <StorysDiv>
-        {users.map(user => {
+        {users.map((user, index) => {
           return([
             <StoryDiv>
               <ImgDiv>
                 {/* <BorderDiv> */}
-                <PhotoImg src={require("../img/yang.jpg")}></PhotoImg> 
+                <PhotoImg src={apiBaseURL + profileImageName[index]}></PhotoImg> 
                 {/* </BorderDiv> */}
               </ImgDiv>
               <NameDiv>

@@ -6,7 +6,8 @@ import axios from 'axios';
 const Todo = () => {
 
   const [todos, setTodos] = useState([]);
-  
+  const [profileImageName, setProfileImageName] = useState([])
+
   useEffect(() => {
     const apiURL = 'http://localhost:3001/api/home'
     const fetchData = async () => {
@@ -14,20 +15,29 @@ const Todo = () => {
 
       console.log(response.data.todos);
       setTodos(response.data.todos);
+
+      const images = []
+      for ( var i = 0 ; i < response.data.todos.length; i++) {
+        images.push(response.data.todos[i].friendProfileImage)
+      }
+      console.log('images:', images)
+      setProfileImageName(images)
     }
 
     fetchData();
   }, []);
 
+  const apiBaseURL = 'http://localhost:3001/api/friends/profile/'
+
   return (
     <>
       <TodosDiv>
-        {todos.map(todo => {
+        {todos.map((todo, index) => {
           return([
             <TodoDiv>
               <ContentDiv>
                 <LeftDiv>
-                  <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
+                  <PhotoImg src={apiBaseURL + profileImageName[index]}></PhotoImg>
                 </LeftDiv>
                 <RightDiv>
                   <MainDiv>
