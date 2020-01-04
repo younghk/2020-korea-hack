@@ -11,17 +11,17 @@ const Input = props => {
   const [pageNum, setPageNum] = useState(1);
   // const [users] = useState(' ')
   // added
-  const [name, setName] = useState(props.name);
-  const [profileImage, setProfileImage] = useState(props.name);
-  const [profileImageFile, setProfileImageFile] = useState(props.name);
-  const [sex, setSex] = useState(props.name);
-  const [relation, setRelation] = useState(props.name);
-  const [birth, setBirth] = useState(props.name);
-  const [occupation, setOccupation] = useState(props.name);
-  const [location, setLocation] = useState(props.name);
-  const [hobby, setHobby] = useState(props.name);
-  const [period, setPeriod] = useState(props.name);
-  const [bornPlace, setBornPlace] = useState(props.name);
+  const [name, setName] = useState('');
+  const [profileImage, setProfileImage] = useState('');
+  const [profileImageFile, setProfileImageFile] = useState();
+  const [sex, setSex] = useState('female');
+  const [relation, setRelation] = useState('friend');
+  const [birth, setBirth] = useState('2020-01-04');
+  const [occupation, setOccupation] = useState('');
+  const [location, setLocation] = useState('');
+  const [hobby, setHobby] = useState('');
+  const [period, setPeriod] = useState('');
+  const [bornPlace, setBornPlace] = useState('');
   //const [phoneNumber, setPhoneNumber] = useState(props.name);
   //const [status, setSex] = useState(props.name);
   
@@ -35,24 +35,13 @@ const Input = props => {
     //   });
     // }).catch(error => console.log(error));
   }, [pageNum, props.match.params.id]);
-  useEffect(() => {
-    setSex('female')
-  }, [sex, 'female']);
-
-  useEffect(() => {
-    setRelation('친구');
-  }, [relation, '친구']);
-
-  useEffect(() => {
-    setBirth('2020-01-04');
-  }, [birth, '2020-01-04']);
 
   const handleChange = (event) => {
     setName(event.target.value)
   }
 
   const handleChangeSex = (event) => {
-    setSex(event.target.value)
+    setSex({sex: event.target.value})
   }
 
   const handleFileInput = (event) => {
@@ -144,8 +133,8 @@ const Input = props => {
             <IconImage src={require("../img/ic_user.png")} alt="img" />
             <InputText3>성별</InputText3>
           </TitleDiv3>
-          <Select placeholder="선택" value={sex} onChange={handleChangeSex}>
-            <Option value="female">여</Option>
+          <Select placeholder="선택" onChange={(e) => setSex(e.target.value)} value={sex}>
+            <Option value="female" label="여"></Option>
             <Option value="male">남</Option>
           </Select>
         </BoxDiv3>
@@ -154,10 +143,8 @@ const Input = props => {
             <IconImage src={require("../img/ic_user.png")} alt="img" />
             <InputText3>관계</InputText3>
           </TitleDiv3>
-          <Select value={relation} onChange={handleChangeRelation}>
-            <Option value="friend" selected>
-              친구
-            </Option>
+        <Select onChange={(e) => setRelation(e.target.value)} value={relation}>
+            <Option value="friend">친구</Option>
             <Option value="family">가족</Option>
             <Option value="lover">애인</Option>
           </Select>
