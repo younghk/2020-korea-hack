@@ -26,10 +26,11 @@ app.use(function(req, res, next) {
 const mysql = require('mysql')
 
 const connection = mysql.createConnection({
-  host: conf.host,
+  host: conf.host1,
   user: conf.user,
   password: conf.password,
   database: conf.database,
+  port: conf.port,
 
   multipleStatements: true
 })

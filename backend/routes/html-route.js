@@ -16,9 +16,7 @@ module.exports = function(app, connection) {
      * 
      */
     app.get('/', function(req, res){
-        connection.query('SELECT * FROM `simple-tutorial`.user;', function(err, data) {
-            (err)?res.send(err):res.json({users: data})
-        })
+       res.send('hell world!')
         console.log("connection and query")
         //console.log(res)
     })
@@ -49,9 +47,9 @@ module.exports = function(app, connection) {
      * Response specific friend's data by friendId
      * status: work
      */
-    app.get('/api/friends/', (req, res) => {
-        var friendId = req.query.friendId
-        //var userId = req.params.userId // app.get('/users/:userId', ()=>)
+    app.get('/api/friends/profile/:friendId', (req, res) => {
+        //var friendId = req.query.friendId
+        var friendId = req.params.friendId // app.get('/users/:userId', ()=>)
         var sql = 'SELECT * FROM `' + db + '`.friend WHERE id = ' + connection.escape(friendId)
         connection.query(sql, (err, data) => {
             if(err){
@@ -59,7 +57,7 @@ module.exports = function(app, connection) {
             } else {
                 var string = JSON.stringify(data)
                 var json = JSON.parse(string)
-                //console.log(json[0].profileImage)
+                console.log(json[0].profileImage)
                 var imgPath = json[0].profileImage
                 //console.log(imgPath)
 
@@ -76,7 +74,7 @@ module.exports = function(app, connection) {
      * API call 'Friend Profile Image'
      * status: work
      */
-    app.get('/api/friends/profile/:profileImgPath', (req, res) => {
+    app.get('/api/friends/profileimage/:profileImgPath', (req, res) => {
         var profileImgPath = req.params.profileImgPath
         //console.log(profileImgPath)
         if(profileImgPath){
@@ -134,14 +132,14 @@ module.exports = function(app, connection) {
         if(req.body.period) period = req.body.period
         //if(req.body.schedule) schedule = req.body.schedule
         if(req.body.phoneNumber) phoneNumber = req.body.phoneNumber
-
+        console.log('req.body:', req.body);
         var values = [friendName, friendProfileImage, sex, relation, birth, occupation, location, hobby, period, phoneNumber, status, activityScore]
-        console.log(values)
+        console.log('values:', values)
         connection.query(sql, [values], (err, result) => {
             if(err){
                 res.send(err)
             } else {
-                console.log(result)
+                //console.log(result)
                 // add file write code here
                 res.json({result: result})
             }
