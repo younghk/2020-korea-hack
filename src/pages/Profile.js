@@ -3,6 +3,9 @@ import ToDo from "../components/ToDo";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import img from "../img/profile.jpg";
+
+import axios from "axios";
+
 const Profile = () => {
   const [name, setName] = useState("");
   const [profileImage, setProfileImage] = useState("");
@@ -16,18 +19,38 @@ const Profile = () => {
   const [period, setPeriod] = useState("");
   const [bornPlace, setBornPlace] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    var prid = window.location.pathname;
+    const apiURL = 'http://localhost:3001/api/friends' + prid
+
+    const fetchData = async () => {
+      const response = await axios.get(apiURL)
+
+      const friend = response.data.users[0]
+      setName(friend.friendName)
+      setSex(friend.sex)
+      setRelation(friend.relation)
+      setBirth(friend.birth)
+      setOccupation(friend.occupation)
+      setLocation(friend.location)
+      setHobby(friend.hobby)
+      setPeriod(friend.period)
+      setProfileImage('http://localhost:3001/api/friends/profileimage/' + friend.friendProfileImage)
+    }
+
+    fetchData(); 
+  }, []);
 
   return (
     <>
       <AllDiv>
         <TopDiv>
           {/* 큰 프사 들어가는 곳! */}
-          <BackImg src={require("../img/profile.jpg")} />
+          <BackImg src={profileImage} />
           <TextDiv>
-            <NameText>존잘남</NameText>
+            <NameText>{name}</NameText>
 
-            <DetailText>대학생, 서울시 성북구</DetailText>
+            <DetailText>{occupation}, {location}</DetailText>
 
             <StarImg src={require("../img/그룹 1581.png")} />
           </TextDiv>
@@ -42,7 +65,7 @@ const Profile = () => {
             </LinkDiv>
           </ModifyDiv>
           {/* 작은 프사 들어가는 곳! */}
-          <SmallImg src={require("../img/profile.jpg")} />
+          <SmallImg src={profileImage} />
           <TabsDiv>
             <TabDiv>
               <TabOnText>정보</TabOnText>
@@ -73,7 +96,7 @@ const Profile = () => {
               <TitleText>생일</TitleText>
             </TitleDiv>
             <ContentDiv>
-              <ContentText>#1995.11.17</ContentText>
+              <ContentText>#{birth}</ContentText>
             </ContentDiv>
           </BoxDiv>
           <BoxDiv>
@@ -91,7 +114,7 @@ const Profile = () => {
               <TitleText>서로 알고 지낸 지</TitleText>
             </TitleDiv>
             <ContentDiv>
-              <ContentText>#2년째</ContentText>
+              <ContentText>#{period}</ContentText>
             </ContentDiv>
           </BoxDiv>
           <BoxDiv>

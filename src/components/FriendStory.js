@@ -26,7 +26,7 @@ const FriendStory = ({ name, img }) => {
     fetchData();
   }, []);
 
-  const apiBaseURL = "http://localhost:3001/api/friends/profile/";
+  const apiBaseURL = 'http://localhost:3001/api/friends/profileimage/'
 
   return (
     <>

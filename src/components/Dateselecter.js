@@ -8,13 +8,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class Dateselecter extends React.Component {
   state = {
-    startDate: new Date()
+    startDate: new Date(),
+    birth: new Date(),
   };
 
   handleChange = date => {
     this.setState({
-      startDate: date
+      startDate: date,
+      birth: date,
     });
+    console.log(date)
   };
 
   render() {
