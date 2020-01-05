@@ -24,6 +24,7 @@ const Input = props => {
   const [bornPlace, setBornPlace] = useState('');
   //const [phoneNumber, setPhoneNumber] = useState(props.name);
   //const [status, setSex] = useState(props.name);
+  const [selectedImage, setSelectedImage] = useState();
   
   useEffect(() => {
     setPageNum(Number(props.match.params.id));
@@ -36,6 +37,10 @@ const Input = props => {
     // }).catch(error => console.log(error));
   }, [pageNum, props.match.params.id]);
 
+  useEffect(() => {
+    setSelectedImage(require('../img/img-gallery.png'));
+  }, []);
+
   const handleChange = (event) => {
     setName(event.target.value)
   }
@@ -46,16 +51,46 @@ const Input = props => {
 
   const handleFileInput = (event) => {
     setProfileImageFile(event.target.files[0])
+
+    let reader = new FileReader();
+     
+    reader.onloadend = () => {
+      setSelectedImage(reader.result)
+    }
+ 
+    reader.readAsDataURL(event.target.files[0])
+    console.log(event.target.files[0])
+    setProfileImage(event.target.files[0].name)
   }
 
   const handlePost = () => {
     var formData = new FormData();
     formData.append('file', profileImageFile);
 
-    return axios.post("http://localhost:3001/api/test/file", formData).then(res => {
+    axios.post("http://localhost:3001/api/test/file", formData).then(res => {
       alert(res)
     }).catch(err => {
       alert(err)
+    })
+
+    let apiUrl = 'http://localhost:3001/api/friends'
+    axios.post(
+      apiUrl,
+      { friendName: name,
+        friendProfileImage: profileImage,
+        sex: sex,
+        relation: relation,
+        birth: birth,
+        occupation: occupation,
+        location: location,
+        hobby: hobby,
+        period: period },
+      { headers: { 'Content-Type': 'application/json' } }
+    ).then(res => {
+      console.log(res);
+      console.log(res.data);
+    }).catch(err => {
+      console.log(err)
     })
   }
 
@@ -93,7 +128,7 @@ const Input = props => {
       <InputDiv>
         <BoxDiv>
           <TotalImg
-            src={require("../img/img-gallery.png")}
+            src={selectedImage}
             alt="img"
           ></TotalImg>
           <InputText1>친구 사진 등록</InputText1>
@@ -102,6 +137,10 @@ const Input = props => {
             <br />
             사진을 등록하세요.
           </InputText12>
+          <label for="upload">
+            <InputFile type="file" name="file" onChange={(e) => handleFileInput(e)} />
+          </label>
+          
         </BoxDiv>
       </InputDiv>
       <DotDiv>
@@ -155,7 +194,7 @@ const Input = props => {
             <InputText3>생일</InputText3>
           </TitleDiv3>
           <SelectBox>
-            <Dateselecter />
+            <Dateselecter value={birth} onChange={(e) => console.log(e)}/>
           </SelectBox>
         </BoxDiv3>
       </InputDiv>
@@ -275,25 +314,7 @@ const Input = props => {
         console.log('bornPlace: ',bornPlace)
         console.log('hobby: ',hobby)
       if(pageNum == 5){
-        let apiUrl = 'http://localhost:3001/api/friends'
-        axios.post(
-          apiUrl,
-          { friendName: name,
-            friendProfileImage: profileImage,
-            sex: sex,
-            relation: relation,
-            birth: birth,
-            occupation: occupation,
-            location: location,
-            hobby: hobby,
-            period: period },
-          { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-        ).then(res => {
-          console.log(res);
-          console.log(res.data);
-        }).catch(err => {
-          console.log(err)
-        })
+        handlePost();
         props.history.push(`/`);
       }
       else{
@@ -717,11 +738,12 @@ const GoText = styled.text`
 
 const InputFile = styled.input`
   width: 255px;
-  height: 500px;
+  height: 100px;
   border: none;
   background: none;
   display: flex;
   justify-content: center;
+  opacity: 0;
 `
 
 export default Input;
