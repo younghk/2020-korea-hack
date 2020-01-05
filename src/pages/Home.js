@@ -3,7 +3,7 @@ import TabHome from "../components/TabHome";
 import Title from "../components/Title";
 import FriendStory from "../components/FriendStory";
 import ToDo from "../components/ToDo";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -30,6 +30,7 @@ const Home = () => {
               </LinkDiv>
             </TextDiv>
             <ContentDiv>
+              <ToDo />
               <ToDo />
             </ContentDiv>
           </BoxDiv>

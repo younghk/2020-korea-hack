@@ -1,54 +1,61 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
-const Todo = () => {
+const ToDo = () => {
+  const [open, setOpen] = useState(false);
+
+  const onToggle = () => setOpen(!open);
   return (
     <>
       <TodosDiv>
-        <TodoDiv>
-          <ContentDiv>
-            <LeftDiv>
-              <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            </LeftDiv>
-            <RightDiv>
-              <MainDiv>
-                <MainText>이름 님이 안부인사를 기다립니다</MainText>
-              </MainDiv>
-              <SubDiv>
-                <DotImg />
-                <SubText>1일 남음</SubText>
-              </SubDiv>
-            </RightDiv>
-          </ContentDiv>
-          <ButtonDiv>
-            <Button>
-              <img src={require("../img/ic_check.png")} />
-              <ButtonText>Clear</ButtonText>
-            </Button>
-          </ButtonDiv>
-        </TodoDiv>
-        <TodoDiv>
-          <ContentDiv>
-            <LeftDiv>
-              <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
-            </LeftDiv>
-            <RightDiv>
-              <MainDiv>
-                <MainText>이름 님이 안부인사를 기다립니다</MainText>
-              </MainDiv>
-              <SubDiv>
-                <DotImg />
-                <SubText>1일 남음</SubText>
-              </SubDiv>
-            </RightDiv>
-          </ContentDiv>
-          <ButtonDiv>
-            <Button>
-              <img src={require("../img/ic_check.png")} />
-              <ButtonText>Clear</ButtonText>
-            </Button>
-          </ButtonDiv>
-        </TodoDiv>
+        {!open && (
+          <TodoDiv>
+            <ContentDiv>
+              <LeftDiv>
+                <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
+              </LeftDiv>
+              <RightDiv>
+                <MainDiv>
+                  <MainText>이름 님이 안부인사를 기다립니다</MainText>
+                </MainDiv>
+                <SubDiv>
+                  <DotImg />
+                  <SubText>1일 남음</SubText>
+                </SubDiv>
+              </RightDiv>
+            </ContentDiv>
+            <ButtonDiv>
+              <Button onClick={onToggle} open={open}>
+                <img src={require("../img/ic_check.png")} />
+                <ButtonText>Clear</ButtonText>
+              </Button>
+            </ButtonDiv>
+          </TodoDiv>
+        )}
+        {/* {!open && (
+          <TodoDiv>
+            <ContentDiv>
+              <LeftDiv>
+                <PhotoImg src={require("../img/yang.jpg")}></PhotoImg>
+              </LeftDiv>
+              <RightDiv>
+                <MainDiv>
+                  <MainText>이름 님이 안부인사를 기다립니다</MainText>
+                </MainDiv>
+                <SubDiv>
+                  <DotImg />
+                  <SubText>1일 남음</SubText>
+                </SubDiv>
+              </RightDiv>
+            </ContentDiv>
+            <ButtonDiv>
+              <Button onClick={onToggle} open={open}>
+                <img src={require("../img/ic_check.png")} />
+                <ButtonText>Clear</ButtonText>
+              </Button>
+            </ButtonDiv>
+          </TodoDiv>
+        )} */}
       </TodosDiv>
     </>
   );
@@ -159,4 +166,4 @@ const ButtonText = styled.text`
   color: #334856;
 `;
 
-export default Todo;
+export default ToDo;
