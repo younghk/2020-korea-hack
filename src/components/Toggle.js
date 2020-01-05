@@ -1,74 +1,43 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import Toggle from "../components/Toggle";
 
 import { Link } from "react-router-dom";
 
-const Toggles = props => {
+const Toggle = props => {
   const [open, setOpen] = useState(false);
   const onToggle = () => setOpen(!open);
   return (
     <>
-      <Img src={require("../img/패스 293@2x.png")} />
+      {/* <Img src={require("../img/패스 293@2x.png")} />
       <ToggleDiv>
         <AllDiv>
           <HeadDiv>
             <HeadText>알림</HeadText>
           </HeadDiv>
-          <BoxsDiv>
-            <Toggle />
-            <Toggle />
-            <Toggle />
-            <Toggle />
-            {/* {!open && (
-              <BoxDiv>
-                <LeftDiv>
-                  <PhotoImg src={require("../img/profile.jpg")}></PhotoImg>
-                </LeftDiv>
-                <RightDiv>
-                  <CancleDiv>
-                    <CancleButton onClick={onToggle} open={open}>
-                      <CancleImg src={require("../img/ic_close.png")} />
-                    </CancleButton>
-                  </CancleDiv>
-                  <NameDiv>
-                    <NameText>한지원</NameText>
-                  </NameDiv>
-                  <ContentDiv>
-                    <ContentText>
-                      친구가 좋아할만한 공연을 확인해보세요
-                    </ContentText>
-                  </ContentDiv>
-                </RightDiv>
-              </BoxDiv>
-            )} */}
-          </BoxsDiv>
+          <BoxsDiv> */}
+      {!open && (
+        <BoxDiv>
+          <LeftDiv>
+            <PhotoImg src={require("../img/profile.jpg")}></PhotoImg>
+          </LeftDiv>
+          <RightDiv>
+            <CancleDiv>
+              <CancleButton onClick={onToggle} open={open}>
+                <CancleImg src={require("../img/ic_close.png")} />
+              </CancleButton>
+            </CancleDiv>
+            <NameDiv>
+              <NameText>한지원</NameText>
+            </NameDiv>
+            <ContentDiv>
+              <ContentText>친구가 좋아할만한 공연을 확인해보세요</ContentText>
+            </ContentDiv>
+          </RightDiv>
+        </BoxDiv>
+      )}
+      {/* </BoxsDiv>
         </AllDiv>
-      </ToggleDiv>
-    </>
-  );
-};
-
-const Title = ({ name }) => {
-  const [mounted, setMounted] = useState(false);
-  const toggle = () => setMounted(!mounted);
-  return (
-    <>
-      <TitleDiv>
-        <TextDiv>
-          <TitleText>{name}</TitleText>
-        </TextDiv>
-        <ButtonDiv>
-          <Button>
-            <ButtonImg
-              onClick={toggle}
-              src={require("../img/ic_bell.png")}
-              alt="img"
-            />
-            {mounted && <Toggles />}
-          </Button>
-        </ButtonDiv>
-      </TitleDiv>
+      </ToggleDiv> */}
     </>
   );
 };
@@ -233,7 +202,7 @@ const TextDiv = styled.div`
   position: absolute;
   width: 150px;
   height: 29px;
-  font-family: Noto Sans KR;
+  font-family: NotoSansCJKkr;
   font-size: 20px;
   font-weight: 900;
   font-stretch: normal;
@@ -247,7 +216,7 @@ const TextDiv = styled.div`
 const TitleText = styled.text`
   width: 84px;
   height: 29px;
-  font-family: Noto Sans KR;
+  font-family: NotoSansCJKkr;
   font-size: 20px;
   font-weight: 900;
   font-stretch: normal;
@@ -274,4 +243,4 @@ const Button = styled.button`
 
 const ButtonImg = styled.img``;
 
-export default Title;
+export default Toggle;

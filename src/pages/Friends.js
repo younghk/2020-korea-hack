@@ -50,7 +50,7 @@ const Friends = () => {
         <AllDiv>
           <FriendsDiv>
             {friends.map((friend, index) => {
-              console.log("friendNum: ", friendNum);
+              console.log("friendNum: ", friend);
               return [
                 <FriendDiv>
                   <LeftDiv>
@@ -59,7 +59,7 @@ const Friends = () => {
                   <CenterDiv>
                     <NameText>{friend.friendName}</NameText>
                     <br />
-                    <RelationText></RelationText>
+                    <RelationText>{friend.relation}</RelationText>
                     <br />
                     <DayText>연락한지 2일째</DayText>
                     <br />
@@ -160,7 +160,7 @@ const CenterDiv = styled.div`
   width: 210px;
   height: 99px;
   display: block;
-  padding-top: 15px;
+  padding-top: 22px;
   padding-left: 5px;
 `;
 const NameText = styled.text`
@@ -190,14 +190,16 @@ const RelationText = styled.text`
   color: #000000;
 `;
 const DayText = styled.text`
-  width: 90px;
-  height: 20px;
-  font-size: 16px;
+  width: 88px;
+  height: 18px;
+  font-family: Noto Sans KR;
+  font-size: 12px;
   object-fit: contain;
   color: white;
   background-color: #5574f7;
   border-radius: 6px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+padding:0 5px;
 `;
 const RightDiv = styled.div`
   width: 35px;

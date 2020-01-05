@@ -32,7 +32,7 @@ const TabChat = () => {
 const TabsDiv = styled.div`
   width: 100%;
   height: 85px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   display: flex;
   margin: 0;

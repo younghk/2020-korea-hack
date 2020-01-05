@@ -91,6 +91,7 @@ const NameDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
 `;
 const NameText = styled.text`
   width: 100%;
@@ -104,6 +105,7 @@ const NameText = styled.text`
   letter-spacing: 0.45px;
   text-align: center;
   color: #1b1c20;
+  margin: auto;
 `;
 
 export default FriendStory;

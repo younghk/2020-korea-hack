@@ -32,10 +32,11 @@ const TabHome = () => {
 };
 
 const TabsDiv = styled.div`
-  width: 100%;
+  width: 375px;
   height: 85px;
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  top: 727px;
+  left: 0px;
   display: flex;
   margin: 0;
   padding: 0;

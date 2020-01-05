@@ -3,10 +3,13 @@ import styled, { css } from "styled-components";
 
 import axios from "axios";
 
-const Todo = () => {
+const ToDo = () => {
   const [todos, setTodos] = useState([]);
   const [profileImageName, setProfileImageName] = useState([]);
 
+  const [open, setOpen] = useState(false);
+
+  const onToggle = () => setOpen(!open);
   useEffect(() => {
     const apiURL = "http://localhost:3001/api/home";
     const fetchData = async () => {
@@ -31,36 +34,38 @@ const Todo = () => {
   return (
     <>
       <TodosDiv>
-        {todos.map((todo, index) => {
-          return [
-            <TodoDiv>
-              <ContentDiv>
-                <LeftDiv>
-                  <PhotoImg
-                    src={apiBaseURL + profileImageName[index]}
-                  ></PhotoImg>
-                </LeftDiv>
-                <RightDiv>
-                  <MainDiv>
-                    <MainText>
-                      {todo.friendName} 님이 안부인사를 기다립니다
-                    </MainText>
-                  </MainDiv>
-                  <SubDiv>
-                    <DotImg />
-                    <SubText>{todo.remainDays}일 남음</SubText>
-                  </SubDiv>
-                </RightDiv>
-              </ContentDiv>
-              <ButtonDiv>
-                <Button>
-                  <img src={require("../img/ic_check.png")} />
-                  <ButtonText>Clear</ButtonText>
-                </Button>
-              </ButtonDiv>
-            </TodoDiv>
-          ];
-        })}
+        
+          {todos.map((todo, index) => {
+            return [
+              <TodoDiv>
+                <ContentDiv>
+                  <LeftDiv>
+                    <PhotoImg
+                      src={apiBaseURL + profileImageName[index]}
+                    ></PhotoImg>
+                  </LeftDiv>
+                  <RightDiv>
+                    <MainDiv>
+                      <MainText>
+                        {todo.friendName} 님이 안부인사를 기다립니다
+                      </MainText>
+                    </MainDiv>
+                    <SubDiv>
+                      <DotImg />
+                      <SubText>{todo.remainDays}일 남음</SubText>
+                    </SubDiv>
+                  </RightDiv>
+                </ContentDiv>
+                <ButtonDiv>
+                  <Button onClick={onToggle} open={open}>
+                    <img src={require("../img/ic_check.png")} />
+                    <ButtonText>Clear</ButtonText>
+                  </Button>
+                </ButtonDiv>
+              </TodoDiv>
+            ];
+          })}
+
       </TodosDiv>
     </>
   );
@@ -171,4 +176,4 @@ const ButtonText = styled.text`
   color: #334856;
 `;
 
-export default Todo;
+export default ToDo;
